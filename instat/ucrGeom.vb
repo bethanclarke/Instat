@@ -929,19 +929,30 @@ Public Class ucrGeom
         'clsgeom_path.AddLayerParameter("linemitre", "numeric", "1")
         'lstAllGeoms.Add(clsgeom_path)
 
-
-        'this is just a start.. needs lots of further work
-        'clsgeom_mosaic.strGeomName = "geom_mosaic"
-        ''mandatory
-        'clsgeom_mosaic.AddAesParameter("weight ", bIsMandatory:=TRUE)
-        'clsgeom_mosaic.AddAesParameter("x", bIsMandatory:=TRUE)
-        'clsgeom_mosaic.AddAesParameter("fill", bIsMandatory:=TRUE)
-        'clsgeom_mosaic.AddAesParameter("conds", bIsMandatory:=TRUE)
+        'clsgeom_mosaic.SetGeomPackage("ggmosaic")
+        'clsgeom_mosaic.SetGeomName("geom_mosaic")
+        'Mandatory Aesthetics 
+        'clsgeom_mosaic.AddAesParameter("weight ", strIncludedDataTypes:={"factor", "numeric"}, bIsMandatory:=TRUE)
+        'need to map x to the ggmosaic::product() fucntion, where we select more than one variable - so we need a multiple receiver for x. The order of the variables in the product() function matters, so a receiver like reordering levels of a factor would be good here 
+        'clsgeom_mosaic.AddAesParameter("x", strIncludedDataTypes:={"factor", "numeric"}, bIsMandatory:=TRUE)
+        'Optional Aesthetics 
+        'if the variable selected for fill is not also called in x, it will be added to the formula in the first position
+        'clsgeom_mosaic.AddAesParameter("fill", strIncludedDataTypes:={"factor", "numeric"})
+        'also need to map conds to the ggmosaic::product() fucntion
+        'clsgeom_mosaic.AddAesParameter("conds", strIncludedDataTypes:={"factor", "numeric"})
+        'Global Layer parameters
+        'clsgeom_mosaic.AddLayerParameter("position", "list", Chr(34) & "identity" & Chr(34), lstParameterStrings:={Chr(34) & "stack" & Chr(34), Chr(34) & "dodge" & Chr(34), Chr(34) & "identity" & Chr(34), Chr(34) & "jitter" & Chr(34), Chr(34) & "fill" & Chr(34), "position_jitterdodge()"})
+        'clsgeom_mosaic.AddLayerParameter("stat", "list", Chr(34) & "mosaic" & Chr(34), lstParameterStrings:={Chr(34) & "identity" & Chr(34), Chr(34) & "bin" & Chr(34), Chr(34) & "count" & Chr(34), Chr(34) & "desnity" & Chr(34), Chr(34) & "ecdf" & Chr(34), Chr(34) & "sum" & Chr(34), Chr(34) & "summary" & Chr(34), Chr(34) & "unique" & Chr(34)}) 
+        'clsgeom_mosaic.AddLayerParameter("show.legend", "list", "TRUE", lstParameterStrings:={"NA", "TRUE", "FALSE"})
+        'clsgeom_mosaic.AddLayerParameter("na.rm", "boolean", "FALSE")
+        'default for divider parameter is mosaic function 
+        'clsgeom_mosaic.AddLayerParameter("divider", "list", )
+        'clsgeom_mosaic.AddLayerParameter("offest", "numeric", "0.01", lstParameterStrings:={2, 0})
+        'clsgeom_mosaic.AddLayerParameter("inherit.aes", "boolean", "TRUE")
         'lstAllGeoms.Add(clsgeom_mosaic)
 
-
         clsgeom_point.SetGeomName("geom_point")
-        'Mandatory aesthetics : here x and y are mandatory, however, when not filled, default values "" are given. Alternatively, if we want to have at least on filled, could add bIsDependentlyMandatory:=TRUE in both. Planning on refining the mandatory aes methods to include the "" cases systematically.
+        'Mandatory Aesthetics : here x and y are mandatory, however, when not filled, default values "" are given. Alternatively, if we want to have at least on filled, could add bIsDependentlyMandatory:=TRUE in both. Planning on refining the mandatory aes methods to include the "" cases systematically.
         clsgeom_point.AddAesParameter("x", strIncludedDataTypes:={"factor", "numeric"})
         clsgeom_point.AddAesParameter("y", strIncludedDataTypes:={"factor", "numeric"})
         'optional
