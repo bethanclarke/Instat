@@ -1,9 +1,9 @@
-﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()> _
+﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()>
 Partial Class dlgEvapotranspiration
     Inherits System.Windows.Forms.Form
 
     'Form overrides dispose to clean up the component list.
-    <System.Diagnostics.DebuggerNonUserCode()> _
+    <System.Diagnostics.DebuggerNonUserCode()>
     Protected Overrides Sub Dispose(ByVal disposing As Boolean)
         Try
             If disposing AndAlso components IsNot Nothing Then
@@ -20,35 +20,253 @@ Partial Class dlgEvapotranspiration
     'NOTE: The following procedure is required by the Windows Form Designer
     'It can be modified using the Windows Form Designer.  
     'Do not modify it using the code editor.
-    <System.Diagnostics.DebuggerStepThrough()> _
+    <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(dlgEvapotranspiration))
-        Me.tbpEvapotranspiration = New System.Windows.Forms.TabControl()
-        Me.tbpPenmanMonteith = New System.Windows.Forms.TabPage()
-        Me.tbpHargreaves = New System.Windows.Forms.TabPage()
+        Me.lblTmax = New System.Windows.Forms.Label()
+        Me.lblTmin = New System.Windows.Forms.Label()
+        Me.lblHumidityMax = New System.Windows.Forms.Label()
+        Me.lblHumidityMin = New System.Windows.Forms.Label()
+        Me.lblRadiation = New System.Windows.Forms.Label()
+        Me.lblWindSpeed = New System.Windows.Forms.Label()
+        Me.lblTimeStep = New System.Windows.Forms.Label()
+        Me.lblSolar = New System.Windows.Forms.Label()
+        Me.lblCrop = New System.Windows.Forms.Label()
+        Me.rdoPenmanMonteith = New System.Windows.Forms.RadioButton()
+        Me.rdoHargreavesSamani = New System.Windows.Forms.RadioButton()
+        Me.lblDay = New System.Windows.Forms.Label()
+        Me.lblMonth = New System.Windows.Forms.Label()
+        Me.lblYear = New System.Windows.Forms.Label()
+        Me.ucrReceiverYear = New instat.ucrReceiverSingle()
+        Me.ucrReceiverMonth = New instat.ucrReceiverSingle()
+        Me.ucrReceiverDay = New instat.ucrReceiverSingle()
+        Me.UcrChkWind = New instat.ucrCheck()
+        Me.UcrNewColumnName = New instat.ucrSave()
+        Me.UcrPnlMethod = New instat.UcrPanel()
+        Me.UcrChkSaveCSV = New instat.ucrCheck()
+        Me.UcrInputCrop = New instat.ucrInputComboBox()
+        Me.UcrInputSolar = New instat.ucrInputComboBox()
+        Me.UcrInputTimeStep = New instat.ucrInputComboBox()
+        Me.UcrReceiverWindSpeed = New instat.ucrReceiverSingle()
+        Me.UcrReceiverRadiation = New instat.ucrReceiverSingle()
+        Me.UcrReceiverHumidityMin = New instat.ucrReceiverSingle()
+        Me.UcrReceiverHumidityMax = New instat.ucrReceiverSingle()
+        Me.UcrReceiverTmin = New instat.ucrReceiverSingle()
+        Me.ucrReceiverTmax = New instat.ucrReceiverSingle()
+        Me.ucrSelectorEvaop = New instat.ucrSelectorByDataFrameAddRemove()
         Me.ucrBase = New instat.ucrButtons()
-        Me.tbpEvapotranspiration.SuspendLayout()
         Me.SuspendLayout()
         '
-        'tbpEvapotranspiration
+        'lblTmax
         '
-        Me.tbpEvapotranspiration.Controls.Add(Me.tbpPenmanMonteith)
-        Me.tbpEvapotranspiration.Controls.Add(Me.tbpHargreaves)
-        resources.ApplyResources(Me.tbpEvapotranspiration, "tbpEvapotranspiration")
-        Me.tbpEvapotranspiration.Name = "tbpEvapotranspiration"
-        Me.tbpEvapotranspiration.SelectedIndex = 0
+        resources.ApplyResources(Me.lblTmax, "lblTmax")
+        Me.lblTmax.Name = "lblTmax"
         '
-        'tbpPenmanMonteith
+        'lblTmin
         '
-        resources.ApplyResources(Me.tbpPenmanMonteith, "tbpPenmanMonteith")
-        Me.tbpPenmanMonteith.Name = "tbpPenmanMonteith"
-        Me.tbpPenmanMonteith.UseVisualStyleBackColor = True
+        resources.ApplyResources(Me.lblTmin, "lblTmin")
+        Me.lblTmin.Name = "lblTmin"
         '
-        'tbpHargreaves
+        'lblHumidityMax
         '
-        resources.ApplyResources(Me.tbpHargreaves, "tbpHargreaves")
-        Me.tbpHargreaves.Name = "tbpHargreaves"
-        Me.tbpHargreaves.UseVisualStyleBackColor = True
+        resources.ApplyResources(Me.lblHumidityMax, "lblHumidityMax")
+        Me.lblHumidityMax.Name = "lblHumidityMax"
+        '
+        'lblHumidityMin
+        '
+        resources.ApplyResources(Me.lblHumidityMin, "lblHumidityMin")
+        Me.lblHumidityMin.Name = "lblHumidityMin"
+        '
+        'lblRadiation
+        '
+        resources.ApplyResources(Me.lblRadiation, "lblRadiation")
+        Me.lblRadiation.Name = "lblRadiation"
+        '
+        'lblWindSpeed
+        '
+        resources.ApplyResources(Me.lblWindSpeed, "lblWindSpeed")
+        Me.lblWindSpeed.Name = "lblWindSpeed"
+        '
+        'lblTimeStep
+        '
+        resources.ApplyResources(Me.lblTimeStep, "lblTimeStep")
+        Me.lblTimeStep.Name = "lblTimeStep"
+        '
+        'lblSolar
+        '
+        resources.ApplyResources(Me.lblSolar, "lblSolar")
+        Me.lblSolar.Name = "lblSolar"
+        '
+        'lblCrop
+        '
+        resources.ApplyResources(Me.lblCrop, "lblCrop")
+        Me.lblCrop.Name = "lblCrop"
+        '
+        'rdoPenmanMonteith
+        '
+        resources.ApplyResources(Me.rdoPenmanMonteith, "rdoPenmanMonteith")
+        Me.rdoPenmanMonteith.FlatAppearance.BorderColor = System.Drawing.SystemColors.ActiveCaption
+        Me.rdoPenmanMonteith.FlatAppearance.BorderSize = 2
+        Me.rdoPenmanMonteith.FlatAppearance.CheckedBackColor = System.Drawing.SystemColors.ActiveCaption
+        Me.rdoPenmanMonteith.Name = "rdoPenmanMonteith"
+        Me.rdoPenmanMonteith.TabStop = True
+        Me.rdoPenmanMonteith.UseVisualStyleBackColor = True
+        '
+        'rdoHargreavesSamani
+        '
+        resources.ApplyResources(Me.rdoHargreavesSamani, "rdoHargreavesSamani")
+        Me.rdoHargreavesSamani.FlatAppearance.BorderColor = System.Drawing.SystemColors.ActiveCaption
+        Me.rdoHargreavesSamani.FlatAppearance.BorderSize = 2
+        Me.rdoHargreavesSamani.FlatAppearance.CheckedBackColor = System.Drawing.SystemColors.ActiveCaption
+        Me.rdoHargreavesSamani.Name = "rdoHargreavesSamani"
+        Me.rdoHargreavesSamani.TabStop = True
+        Me.rdoHargreavesSamani.UseVisualStyleBackColor = True
+        '
+        'lblDay
+        '
+        resources.ApplyResources(Me.lblDay, "lblDay")
+        Me.lblDay.Name = "lblDay"
+        '
+        'lblMonth
+        '
+        resources.ApplyResources(Me.lblMonth, "lblMonth")
+        Me.lblMonth.Name = "lblMonth"
+        '
+        'lblYear
+        '
+        resources.ApplyResources(Me.lblYear, "lblYear")
+        Me.lblYear.Name = "lblYear"
+        '
+        'ucrReceiverYear
+        '
+        Me.ucrReceiverYear.frmParent = Me
+        resources.ApplyResources(Me.ucrReceiverYear, "ucrReceiverYear")
+        Me.ucrReceiverYear.Name = "ucrReceiverYear"
+        Me.ucrReceiverYear.Selector = Nothing
+        Me.ucrReceiverYear.strNcFilePath = ""
+        Me.ucrReceiverYear.ucrSelector = Nothing
+        '
+        'ucrReceiverMonth
+        '
+        Me.ucrReceiverMonth.frmParent = Me
+        resources.ApplyResources(Me.ucrReceiverMonth, "ucrReceiverMonth")
+        Me.ucrReceiverMonth.Name = "ucrReceiverMonth"
+        Me.ucrReceiverMonth.Selector = Nothing
+        Me.ucrReceiverMonth.strNcFilePath = ""
+        Me.ucrReceiverMonth.ucrSelector = Nothing
+        '
+        'ucrReceiverDay
+        '
+        Me.ucrReceiverDay.frmParent = Me
+        resources.ApplyResources(Me.ucrReceiverDay, "ucrReceiverDay")
+        Me.ucrReceiverDay.Name = "ucrReceiverDay"
+        Me.ucrReceiverDay.Selector = Nothing
+        Me.ucrReceiverDay.strNcFilePath = ""
+        Me.ucrReceiverDay.ucrSelector = Nothing
+        '
+        'UcrChkWind
+        '
+        Me.UcrChkWind.Checked = False
+        resources.ApplyResources(Me.UcrChkWind, "UcrChkWind")
+        Me.UcrChkWind.Name = "UcrChkWind"
+        '
+        'UcrNewColumnName
+        '
+        resources.ApplyResources(Me.UcrNewColumnName, "UcrNewColumnName")
+        Me.UcrNewColumnName.Name = "UcrNewColumnName"
+        '
+        'UcrPnlMethod
+        '
+        resources.ApplyResources(Me.UcrPnlMethod, "UcrPnlMethod")
+        Me.UcrPnlMethod.Name = "UcrPnlMethod"
+        '
+        'UcrChkSaveCSV
+        '
+        Me.UcrChkSaveCSV.Checked = False
+        resources.ApplyResources(Me.UcrChkSaveCSV, "UcrChkSaveCSV")
+        Me.UcrChkSaveCSV.Name = "UcrChkSaveCSV"
+        '
+        'UcrInputCrop
+        '
+        Me.UcrInputCrop.AddQuotesIfUnrecognised = True
+        Me.UcrInputCrop.IsReadOnly = False
+        resources.ApplyResources(Me.UcrInputCrop, "UcrInputCrop")
+        Me.UcrInputCrop.Name = "UcrInputCrop"
+        '
+        'UcrInputSolar
+        '
+        Me.UcrInputSolar.AddQuotesIfUnrecognised = True
+        Me.UcrInputSolar.IsReadOnly = False
+        resources.ApplyResources(Me.UcrInputSolar, "UcrInputSolar")
+        Me.UcrInputSolar.Name = "UcrInputSolar"
+        '
+        'UcrInputTimeStep
+        '
+        Me.UcrInputTimeStep.AddQuotesIfUnrecognised = True
+        Me.UcrInputTimeStep.IsReadOnly = False
+        resources.ApplyResources(Me.UcrInputTimeStep, "UcrInputTimeStep")
+        Me.UcrInputTimeStep.Name = "UcrInputTimeStep"
+        '
+        'UcrReceiverWindSpeed
+        '
+        Me.UcrReceiverWindSpeed.frmParent = Me
+        resources.ApplyResources(Me.UcrReceiverWindSpeed, "UcrReceiverWindSpeed")
+        Me.UcrReceiverWindSpeed.Name = "UcrReceiverWindSpeed"
+        Me.UcrReceiverWindSpeed.Selector = Nothing
+        Me.UcrReceiverWindSpeed.strNcFilePath = ""
+        Me.UcrReceiverWindSpeed.ucrSelector = Nothing
+        '
+        'UcrReceiverRadiation
+        '
+        Me.UcrReceiverRadiation.frmParent = Me
+        resources.ApplyResources(Me.UcrReceiverRadiation, "UcrReceiverRadiation")
+        Me.UcrReceiverRadiation.Name = "UcrReceiverRadiation"
+        Me.UcrReceiverRadiation.Selector = Nothing
+        Me.UcrReceiverRadiation.strNcFilePath = ""
+        Me.UcrReceiverRadiation.ucrSelector = Nothing
+        '
+        'UcrReceiverHumidityMin
+        '
+        Me.UcrReceiverHumidityMin.frmParent = Me
+        resources.ApplyResources(Me.UcrReceiverHumidityMin, "UcrReceiverHumidityMin")
+        Me.UcrReceiverHumidityMin.Name = "UcrReceiverHumidityMin"
+        Me.UcrReceiverHumidityMin.Selector = Nothing
+        Me.UcrReceiverHumidityMin.strNcFilePath = ""
+        Me.UcrReceiverHumidityMin.ucrSelector = Nothing
+        '
+        'UcrReceiverHumidityMax
+        '
+        Me.UcrReceiverHumidityMax.frmParent = Me
+        resources.ApplyResources(Me.UcrReceiverHumidityMax, "UcrReceiverHumidityMax")
+        Me.UcrReceiverHumidityMax.Name = "UcrReceiverHumidityMax"
+        Me.UcrReceiverHumidityMax.Selector = Nothing
+        Me.UcrReceiverHumidityMax.strNcFilePath = ""
+        Me.UcrReceiverHumidityMax.ucrSelector = Nothing
+        '
+        'UcrReceiverTmin
+        '
+        Me.UcrReceiverTmin.frmParent = Me
+        resources.ApplyResources(Me.UcrReceiverTmin, "UcrReceiverTmin")
+        Me.UcrReceiverTmin.Name = "UcrReceiverTmin"
+        Me.UcrReceiverTmin.Selector = Nothing
+        Me.UcrReceiverTmin.strNcFilePath = ""
+        Me.UcrReceiverTmin.ucrSelector = Nothing
+        '
+        'ucrReceiverTmax
+        '
+        Me.ucrReceiverTmax.frmParent = Me
+        resources.ApplyResources(Me.ucrReceiverTmax, "ucrReceiverTmax")
+        Me.ucrReceiverTmax.Name = "ucrReceiverTmax"
+        Me.ucrReceiverTmax.Selector = Nothing
+        Me.ucrReceiverTmax.strNcFilePath = ""
+        Me.ucrReceiverTmax.ucrSelector = Nothing
+        '
+        'ucrSelectorEvaop
+        '
+        Me.ucrSelectorEvaop.bShowHiddenColumns = False
+        Me.ucrSelectorEvaop.bUseCurrentFilter = True
+        resources.ApplyResources(Me.ucrSelectorEvaop, "ucrSelectorEvaop")
+        Me.ucrSelectorEvaop.Name = "ucrSelectorEvaop"
         '
         'ucrBase
         '
@@ -59,19 +277,77 @@ Partial Class dlgEvapotranspiration
         '
         resources.ApplyResources(Me, "$this")
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.Controls.Add(Me.tbpEvapotranspiration)
+        Me.Controls.Add(Me.lblYear)
+        Me.Controls.Add(Me.ucrReceiverYear)
+        Me.Controls.Add(Me.lblMonth)
+        Me.Controls.Add(Me.ucrReceiverMonth)
+        Me.Controls.Add(Me.lblDay)
+        Me.Controls.Add(Me.ucrReceiverDay)
+        Me.Controls.Add(Me.UcrChkWind)
+        Me.Controls.Add(Me.UcrNewColumnName)
+        Me.Controls.Add(Me.rdoHargreavesSamani)
+        Me.Controls.Add(Me.rdoPenmanMonteith)
+        Me.Controls.Add(Me.UcrPnlMethod)
+        Me.Controls.Add(Me.UcrChkSaveCSV)
+        Me.Controls.Add(Me.lblCrop)
+        Me.Controls.Add(Me.UcrInputCrop)
+        Me.Controls.Add(Me.lblSolar)
+        Me.Controls.Add(Me.UcrInputSolar)
+        Me.Controls.Add(Me.lblTimeStep)
+        Me.Controls.Add(Me.UcrInputTimeStep)
+        Me.Controls.Add(Me.lblWindSpeed)
+        Me.Controls.Add(Me.UcrReceiverWindSpeed)
+        Me.Controls.Add(Me.lblRadiation)
+        Me.Controls.Add(Me.UcrReceiverRadiation)
+        Me.Controls.Add(Me.lblHumidityMin)
+        Me.Controls.Add(Me.UcrReceiverHumidityMin)
+        Me.Controls.Add(Me.lblHumidityMax)
+        Me.Controls.Add(Me.UcrReceiverHumidityMax)
+        Me.Controls.Add(Me.lblTmin)
+        Me.Controls.Add(Me.UcrReceiverTmin)
+        Me.Controls.Add(Me.lblTmax)
+        Me.Controls.Add(Me.ucrReceiverTmax)
+        Me.Controls.Add(Me.ucrSelectorEvaop)
         Me.Controls.Add(Me.ucrBase)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow
         Me.MaximizeBox = False
         Me.MinimizeBox = False
         Me.Name = "dlgEvapotranspiration"
-        Me.tbpEvapotranspiration.ResumeLayout(False)
         Me.ResumeLayout(False)
+        Me.PerformLayout()
 
     End Sub
 
     Friend WithEvents ucrBase As ucrButtons
-    Friend WithEvents tbpEvapotranspiration As TabControl
-    Friend WithEvents tbpPenmanMonteith As TabPage
-    Friend WithEvents tbpHargreaves As TabPage
+    Friend WithEvents ucrSelectorEvaop As ucrSelectorByDataFrameAddRemove
+    Friend WithEvents ucrReceiverTmax As ucrReceiverSingle
+    Friend WithEvents lblTmax As Label
+    Friend WithEvents lblHumidityMin As Label
+    Friend WithEvents UcrReceiverHumidityMin As ucrReceiverSingle
+    Friend WithEvents lblHumidityMax As Label
+    Friend WithEvents UcrReceiverHumidityMax As ucrReceiverSingle
+    Friend WithEvents lblTmin As Label
+    Friend WithEvents UcrReceiverTmin As ucrReceiverSingle
+    Friend WithEvents UcrChkSaveCSV As ucrCheck
+    Friend WithEvents lblCrop As Label
+    Friend WithEvents UcrInputCrop As ucrInputComboBox
+    Friend WithEvents lblSolar As Label
+    Friend WithEvents UcrInputSolar As ucrInputComboBox
+    Friend WithEvents lblTimeStep As Label
+    Friend WithEvents UcrInputTimeStep As ucrInputComboBox
+    Friend WithEvents lblWindSpeed As Label
+    Friend WithEvents UcrReceiverWindSpeed As ucrReceiverSingle
+    Friend WithEvents lblRadiation As Label
+    Friend WithEvents UcrReceiverRadiation As ucrReceiverSingle
+    Friend WithEvents rdoHargreavesSamani As RadioButton
+    Friend WithEvents rdoPenmanMonteith As RadioButton
+    Friend WithEvents UcrPnlMethod As UcrPanel
+    Friend WithEvents UcrNewColumnName As ucrSave
+    Friend WithEvents UcrChkWind As ucrCheck
+    Friend WithEvents ucrReceiverDay As ucrReceiverSingle
+    Friend WithEvents lblDay As Label
+    Friend WithEvents ucrReceiverYear As ucrReceiverSingle
+    Friend WithEvents lblMonth As Label
+    Friend WithEvents ucrReceiverMonth As ucrReceiverSingle
+    Friend WithEvents lblYear As Label
 End Class
