@@ -20,7 +20,7 @@ Public Class dlgEvapotranspiration
     Private bFirstload As Boolean = True
     Private bReset As Boolean = True
     Private bResetSubdialog As Boolean = False
-    Private clsETPenmanMonteith, clsHargreavesSamani, clsDataFunctionPM, clsDataFunctionHS, clsReadInputs As New RFunction
+    Private clsETPenmanMonteith, clsHargreavesSamani, clsDataFunctionPM, clsDataFunctionHS, clsReadInputs, clsVector As New RFunction
     Private clsDailyOperatorPM, clsDailyOperatorHS As New ROperator
 
     Private Sub dlgdlgEvapotranspiration_Load(sender As Object, e As EventArgs) Handles MyBase.Load
@@ -40,6 +40,8 @@ Public Class dlgEvapotranspiration
     Private Sub InitialiseDialog()
         ucrBase.clsRsyntax.iCallType = 2
         'ucrBase.iHelpTopicID = 510
+
+        ucrReceiverYear.SetMeAsReceiver()
 
         'panel setting
         UcrPnlMethod.AddRadioButton(rdoPenmanMonteith)
@@ -192,13 +194,15 @@ Public Class dlgEvapotranspiration
 
         clsReadInputs.SetRCommand("ReadInputs")
         clsReadInputs.AddParameter("constants", "constants", iPosition:=2)
-        clsReadInputs.AddParameter("stopmissing", iPosition:=3)
+        clsReadInputs.AddParameter("stopmissing", "c(10, 10, 10)", iPosition:=3)
         clsReadInputs.AddParameter("timestep", Chr(34) & "daily" & Chr(34), iPosition:=4)
         clsReadInputs.AddParameter("interp_missing_days", "FALSE", iPosition:=5)
         clsReadInputs.AddParameter("interp_missing_entries", "FALSE", iPosition:=6)
         clsReadInputs.AddParameter("interp_abnormal", "FALSE", iPosition:=7)
         clsReadInputs.AddParameter("missing_method", "NULL", iPosition:=8)
         clsReadInputs.AddParameter("abnormal_method", "NULL", iPosition:=9)
+
+        clsVector.SetRCommand("c")
 
         clsDailyOperatorPM.SetOperation("$")
         clsDailyOperatorPM.AddParameter("ET.PenmanMonteith", clsRFunctionParameter:=clsETPenmanMonteith, iPosition:=0)
@@ -268,12 +272,12 @@ Public Class dlgEvapotranspiration
 
     Private Sub ucrPnlMethod_ControlValueChanged(ucrChangedControl As ucrCore) Handles UcrPnlMethod.ControlValueChanged, UcrInputTimeStep.ControlValueChanged, UcrInputSolar.ControlValueChanged, UcrInputCrop.ControlValueChanged
         If rdoPenmanMonteith.Checked Then
-            clsReadInputs.AddParameter("varnames", "c(Tmax, Tmin, RHmax, RHmin, Rs, u2)", iPosition:=0)
+            clsReadInputs.AddParameter("varnames", "c(" & Chr(34) & "Tmax" & Chr(34), Chr(34) & "Tmin" & Chr(34), Chr(34) & "RHmax" & Chr(34), Chr(34) & "RHmin" & Chr(34), Chr(34) & "Rs" & Chr(34), Chr(34) & "u2" & Chr(34) ")", iPosition:=0)
             clsReadInputs.AddParameter("climatedata", clsRFunctionParameter:=clsDataFunctionPM, iPosition:=1)
             clsDailyOperatorPM.SetAssignTo(UcrNewColumnName.GetText, strTempDataframe:=ucrSelectorEvaop.ucrAvailableDataFrames.cboAvailableDataFrames.Text, strTempColumn:=UcrNewColumnName.GetText)
             ucrBase.clsRsyntax.SetBaseROperator(clsDailyOperatorPM)
         ElseIf rdoHargreavesSamani.Checked Then
-            clsReadInputs.AddParameter("varnames", "c(Tmax, Tmin)", iPosition:=0)
+            clsReadInputs.AddParameter("varnames", "c(" & Chr(34) & "Tmax" & Chr(34), Chr(34) & "Tmin" & Chr(34) & ")", iPosition:=0)
             clsReadInputs.AddParameter("climatedata", clsRFunctionParameter:=clsDataFunctionHS, iPosition:=1)
             clsDailyOperatorHS.SetAssignTo(UcrNewColumnName.GetText, strTempDataframe:=ucrSelectorEvaop.ucrAvailableDataFrames.cboAvailableDataFrames.Text, strTempColumn:=UcrNewColumnName.GetText)
             ucrBase.clsRsyntax.SetBaseROperator(clsDailyOperatorHS)
