@@ -14,13 +14,14 @@
 ' You should have received a copy of the GNU General Public License 
 ' along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
+Imports instat
 Imports instat.Translations
 
 Public Class dlgEvapotranspiration
     Private bFirstload As Boolean = True
     Private bReset As Boolean = True
     Private bResetSubdialog As Boolean = False
-    Private clsETPenmanMonteith, clsHargreavesSamani, clsDataFunctionPM, clsDataFunctionHS, clsReadInputs, clsVector As New RFunction
+    Private clsETPenmanMonteith, clsHargreavesSamani, clsDataFunctionPM, clsDataFunctionHS, clsDataFunction, clsReadInputs, clsVector, clsMissingDataVector, clsVarnamesVectorPM, clsVarnamesVectorHS As New RFunction
     Private clsDailyOperatorPM, clsDailyOperatorHS As New ROperator
 
     Private Sub dlgdlgEvapotranspiration_Load(sender As Object, e As EventArgs) Handles MyBase.Load
@@ -141,12 +142,35 @@ Public Class dlgEvapotranspiration
         UcrChkSaveCSV.SetValuesCheckedAndUnchecked(Chr(34) & "yes" & Chr(34), Chr(34) & "no" & Chr(34))
         UcrChkSaveCSV.SetRDefault("yes")
 
+        ' Missing Options 
+        ucrChkInterpMissingDays.SetParameter(New RParameter("interp_missing_days"))
+        ucrChkInterpMissingDays.SetValuesCheckedAndUnchecked("TRUE", "FALSE")
+        ucrChkInterpMissingDays.SetRDefault("FALSE")
+        ucrChkInterpMissingDays.SetText("Interpolate Missing Days")
+
+        ucrChkInterpMissingEntries.SetParameter(New RParameter("interp_missing_entries"))
+        ucrChkInterpMissingEntries.SetValuesCheckedAndUnchecked("TRUE", "FALSE")
+        ucrChkInterpMissingEntries.SetRDefault("FALSE")
+        ucrChkInterpMissingEntries.SetText("Interpolate Missing Entries")
+
+        ucrChkMissingMethod.SetText("Missing Method")
+        ucrChkMissingMethod.SetParameter(New RParameter("missing_method"))
+        ucrChkMissingMethod.SetRDefault("NULL")
+
+        ucrInputComboBoxMissingMethod.SetParameter(New RParameter("missing_method"))
+        ucrInputComboBoxMissingMethod.SetItems({Chr(34) & "monthly average" & Chr(34), Chr(34) & "seasonal average" & Chr(34), Chr(34) & "DoY average" & Chr(34), Chr(34) & "neighbouring average" & Chr(34)})
+        ucrInputComboBoxMissingMethod.SetRDefault(Chr(34) & "monthly average" & Chr(34))
+
+        ucrNudMaxMissingData.SetParameter(New RParameter("x", bNewIncludeArgumentName:=False))
+        ucrNudMaxMissingDays.SetParameter(New RParameter("y", bNewIncludeArgumentName:=False))
+        ucrNudMaxDurationMissingData.SetParameter(New RParameter("z", bNewIncludeArgumentName:=False))
+
         'ucrSave Date Column
         UcrNewColumnName.SetPrefix("Evapotranspiration")
         UcrNewColumnName.SetSaveTypeAsColumn()
         UcrNewColumnName.SetDataFrameSelector(ucrSelectorEvaop.ucrAvailableDataFrames)
         UcrNewColumnName.SetIsComboBox()
-        UcrNewColumnName.SetCheckBoxText("New Column Name:")
+        UcrNewColumnName.SetCheckBoxText("New Column Name: ")
         'UcrNewColumnName.SetText("New Column Name:")
 
     End Sub
@@ -176,7 +200,7 @@ Public Class dlgEvapotranspiration
 
         clsETPenmanMonteith.SetRCommand("ET.PenmanMonteith")
         clsETPenmanMonteith.AddParameter("data", clsRFunctionParameter:=clsReadInputs, iPosition:=0)
-        clsETPenmanMonteith.AddParameter("constants", "constants", iPosition:=1)
+        clsETPenmanMonteith.AddParameter("constants", "constants", iPosition:=1, bIncludeArgumentName:=False)
         clsETPenmanMonteith.AddParameter("ts", Chr(34) & "daily" & Chr(34), iPosition:=2)
         clsETPenmanMonteith.AddParameter("solar", Chr(34) & "sunshine hours" & Chr(34), iPosition:=3)
         clsETPenmanMonteith.AddParameter("crops", Chr(34) & "short" & Chr(34), iPosition:=5)
@@ -184,7 +208,7 @@ Public Class dlgEvapotranspiration
 
         clsHargreavesSamani.SetRCommand("ET.HargreavesSamani")
         clsHargreavesSamani.AddParameter("data", clsRFunctionParameter:=clsReadInputs, iPosition:=0)
-        clsHargreavesSamani.AddParameter("constants", "constants", iPosition:=1)
+        clsHargreavesSamani.AddParameter("constants", "constants", iPosition:=1, bIncludeArgumentName:=False)
         clsHargreavesSamani.AddParameter("ts", Chr(34) & "daily" & Chr(34), iPosition:=2)
 
         clsDataFunctionPM.SetPackageName("base")
@@ -192,9 +216,11 @@ Public Class dlgEvapotranspiration
         clsDataFunctionPM.SetRCommand("data.frame")
         clsDataFunctionHS.SetRCommand("data.frame")
 
+        clsDataFunction.SetRCommand("data")
+
         clsReadInputs.SetRCommand("ReadInputs")
-        clsReadInputs.AddParameter("constants", "constants", iPosition:=2)
-        clsReadInputs.AddParameter("stopmissing", "c(10, 10, 10)", iPosition:=3)
+        clsReadInputs.AddParameter("constants", "constants", iPosition:=2, bIncludeArgumentName:=False)
+        clsReadInputs.AddParameter("stopmissing", clsRFunctionParameter:=clsMissingDataVector, iPosition:=3)
         clsReadInputs.AddParameter("timestep", Chr(34) & "daily" & Chr(34), iPosition:=4)
         clsReadInputs.AddParameter("interp_missing_days", "FALSE", iPosition:=5)
         clsReadInputs.AddParameter("interp_missing_entries", "FALSE", iPosition:=6)
@@ -202,11 +228,26 @@ Public Class dlgEvapotranspiration
         clsReadInputs.AddParameter("missing_method", "NULL", iPosition:=8)
         clsReadInputs.AddParameter("abnormal_method", "NULL", iPosition:=9)
 
+        clsVarnamesVectorPM.SetRCommand("c")
+        clsVarnamesVectorPM.AddParameter("Tmax", Chr(34) & "Tmax" & Chr(34), bIncludeArgumentName:=False)
+        clsVarnamesVectorPM.AddParameter("Tmin", Chr(34) & "Tmin" & Chr(34), bIncludeArgumentName:=False)
+        clsVarnamesVectorPM.AddParameter("HRmax", Chr(34) & "HRmax" & Chr(34), bIncludeArgumentName:=False)
+        clsVarnamesVectorPM.AddParameter("HRmin", Chr(34) & "HRmin" & Chr(34), bIncludeArgumentName:=False)
+        clsVarnamesVectorPM.AddParameter("Rs", Chr(34) & "Rs" & Chr(34), bIncludeArgumentName:=False)
+        clsVarnamesVectorPM.AddParameter("u2", Chr(34) & "u2" & Chr(34), bIncludeArgumentName:=False)
+
+        clsVarnamesVectorHS.SetRCommand("c")
+        clsVarnamesVectorHS.AddParameter("Tmax", Chr(34) & "Tmax" & Chr(34), bIncludeArgumentName:=False)
+        clsVarnamesVectorHS.AddParameter("Tmin", Chr(34) & "Tmin" & Chr(34), bIncludeArgumentName:=False)
+
+        clsMissingDataVector.SetRCommand("c")
+
         clsVector.SetRCommand("c")
 
         clsDailyOperatorPM.SetOperation("$")
         clsDailyOperatorPM.AddParameter("ET.PenmanMonteith", clsRFunctionParameter:=clsETPenmanMonteith, iPosition:=0)
         clsDailyOperatorPM.AddParameter("ET.Daily", strParameterValue:="ET.Daily", iPosition:=1)
+        clsDailyOperatorPM.SetAssignTo("Evapotranspiration")
 
         clsDailyOperatorHS.SetOperation("$")
         clsDailyOperatorHS.AddParameter("ET.HargreavesSamani", clsRFunctionParameter:=clsHargreavesSamani, iPosition:=0)
@@ -242,6 +283,13 @@ Public Class dlgEvapotranspiration
         UcrChkWind.SetRCode(clsETPenmanMonteith, bReset)
         UcrChkSaveCSV.SetRCode(clsETPenmanMonteith, bReset)
         UcrNewColumnName.SetRCode(ucrBase.clsRsyntax.clsBaseOperator, bReset)
+        ucrNudMaxMissingData.SetRCode(clsMissingDataVector, bReset)
+        ucrNudMaxMissingDays.SetRCode(clsMissingDataVector, bReset)
+        ucrNudMaxDurationMissingData.SetRCode(clsMissingDataVector, bReset)
+        ucrChkInterpMissingDays.SetRCode(clsReadInputs, bReset)
+        ucrChkInterpMissingEntries.SetRCode(clsReadInputs, bReset)
+        ucrChkMissingMethod.SetRCode(clsReadInputs, bReset)
+        ucrInputComboBoxMissingMethod.SetRCode(clsReadInputs, bReset)
     End Sub
 
     Private Sub TestOKEnabled()
@@ -271,15 +319,20 @@ Public Class dlgEvapotranspiration
     End Sub
 
     Private Sub ucrPnlMethod_ControlValueChanged(ucrChangedControl As ucrCore) Handles UcrPnlMethod.ControlValueChanged, UcrInputTimeStep.ControlValueChanged, UcrInputSolar.ControlValueChanged, UcrInputCrop.ControlValueChanged
+        clsDataFunction.AddParameter(Chr(34) & "constants" & Chr(34))
         If rdoPenmanMonteith.Checked Then
-            clsReadInputs.AddParameter("varnames", "c(" & Chr(34) & "Tmax" & Chr(34), Chr(34) & "Tmin" & Chr(34), Chr(34) & "RHmax" & Chr(34), Chr(34) & "RHmin" & Chr(34), Chr(34) & "Rs" & Chr(34), Chr(34) & "u2" & Chr(34) ")", iPosition:=0)
+            clsReadInputs.AddParameter("varnames", clsRFunctionParameter:=clsVarnamesVectorPM, iPosition:=0)
             clsReadInputs.AddParameter("climatedata", clsRFunctionParameter:=clsDataFunctionPM, iPosition:=1)
             clsDailyOperatorPM.SetAssignTo(UcrNewColumnName.GetText, strTempDataframe:=ucrSelectorEvaop.ucrAvailableDataFrames.cboAvailableDataFrames.Text, strTempColumn:=UcrNewColumnName.GetText)
+            clsETPenmanMonteith.SetAssignTo("EvapotranspirationPM")
+            clsDailyOperatorPM.SetAssignTo("Evapotranspiration")
             ucrBase.clsRsyntax.SetBaseROperator(clsDailyOperatorPM)
         ElseIf rdoHargreavesSamani.Checked Then
-            clsReadInputs.AddParameter("varnames", "c(" & Chr(34) & "Tmax" & Chr(34), Chr(34) & "Tmin" & Chr(34) & ")", iPosition:=0)
+            clsReadInputs.AddParameter("varnames", clsRFunctionParameter:=clsVarnamesVectorHS, iPosition:=0)
             clsReadInputs.AddParameter("climatedata", clsRFunctionParameter:=clsDataFunctionHS, iPosition:=1)
             clsDailyOperatorHS.SetAssignTo(UcrNewColumnName.GetText, strTempDataframe:=ucrSelectorEvaop.ucrAvailableDataFrames.cboAvailableDataFrames.Text, strTempColumn:=UcrNewColumnName.GetText)
+            clsHargreavesSamani.SetAssignTo("EvapotranspirationHS")
+            clsDailyOperatorHS.SetAssignTo("Evapotranspiration")
             ucrBase.clsRsyntax.SetBaseROperator(clsDailyOperatorHS)
         End If
     End Sub
@@ -308,11 +361,9 @@ Public Class dlgEvapotranspiration
         End If
     End Sub
 
-    'Private Sub ucrSelectorCorrelation_ControlContentsChanged(ucrChangedControl As ucrCore) Handles ucrSelectorCorrelation.ControlContentsChanged
-    'clsTempFunc = ucrSelectorCorrelation.ucrAvailableDataFrames.clsCurrDataFrame
-    'End Sub
-
-
+    Private Sub ucrNudMaxMissingData_ControlContentsChanged(ucrChangedControl As ucrCore) Handles ucrNudMaxMissingData.ControlContentsChanged, ucrNudMaxDurationMissingData.ControlContentsChanged, ucrNudMaxMissingDays.ControlContentsChanged
+        TestOKEnabled()
+    End Sub
 End Class
 
 
