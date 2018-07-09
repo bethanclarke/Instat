@@ -37,11 +37,23 @@ Partial Class dlgEvapotranspiration
         Me.lblDay = New System.Windows.Forms.Label()
         Me.lblMonth = New System.Windows.Forms.Label()
         Me.lblYear = New System.Windows.Forms.Label()
+        Me.grpMissingDataOpts = New System.Windows.Forms.GroupBox()
+        Me.lblMissingMethod = New System.Windows.Forms.Label()
+        Me.lblMaxPerctMissingDays = New System.Windows.Forms.Label()
+        Me.lblMaxPerctDurationMissingData = New System.Windows.Forms.Label()
+        Me.lblMaxPerctMissindData = New System.Windows.Forms.Label()
+        Me.lblNewColName = New System.Windows.Forms.Label()
+        Me.ucrInputNewColumnName = New instat.ucrInputTextBox()
+        Me.ucrInputComboBoxMissingMethod = New instat.ucrInputComboBox()
+        Me.ucrChkInterpMissingEntries = New instat.ucrCheck()
+        Me.ucrChkInterpMissingDays = New instat.ucrCheck()
+        Me.ucrNudMaxMissingDays = New instat.ucrNud()
+        Me.ucrNudMaxDurationMissingData = New instat.ucrNud()
+        Me.ucrNudMaxMissingData = New instat.ucrNud()
         Me.ucrReceiverYear = New instat.ucrReceiverSingle()
         Me.ucrReceiverMonth = New instat.ucrReceiverSingle()
         Me.ucrReceiverDay = New instat.ucrReceiverSingle()
         Me.UcrChkWind = New instat.ucrCheck()
-        Me.UcrNewColumnName = New instat.ucrSave()
         Me.UcrPnlMethod = New instat.UcrPanel()
         Me.UcrChkSaveCSV = New instat.ucrCheck()
         Me.UcrInputCrop = New instat.ucrInputComboBox()
@@ -55,17 +67,6 @@ Partial Class dlgEvapotranspiration
         Me.ucrReceiverTmax = New instat.ucrReceiverSingle()
         Me.ucrSelectorEvaop = New instat.ucrSelectorByDataFrameAddRemove()
         Me.ucrBase = New instat.ucrButtons()
-        Me.grpMissingDataOpts = New System.Windows.Forms.GroupBox()
-        Me.lblMaxPerctMissingDays = New System.Windows.Forms.Label()
-        Me.lblMaxPerctDurationMissingData = New System.Windows.Forms.Label()
-        Me.lblMaxPerctMissindData = New System.Windows.Forms.Label()
-        Me.ucrChkInterpMissingEntries = New instat.ucrCheck()
-        Me.ucrChkInterpMissingDays = New instat.ucrCheck()
-        Me.ucrNudMaxMissingDays = New instat.ucrNud()
-        Me.ucrNudMaxDurationMissingData = New instat.ucrNud()
-        Me.ucrNudMaxMissingData = New instat.ucrNud()
-        Me.ucrChkMissingMethod = New instat.ucrCheck()
-        Me.ucrInputComboBoxMissingMethod = New instat.ucrInputComboBox()
         Me.grpMissingDataOpts.SuspendLayout()
         Me.SuspendLayout()
         '
@@ -149,6 +150,104 @@ Partial Class dlgEvapotranspiration
         resources.ApplyResources(Me.lblYear, "lblYear")
         Me.lblYear.Name = "lblYear"
         '
+        'grpMissingDataOpts
+        '
+        Me.grpMissingDataOpts.Controls.Add(Me.lblMissingMethod)
+        Me.grpMissingDataOpts.Controls.Add(Me.ucrInputComboBoxMissingMethod)
+        Me.grpMissingDataOpts.Controls.Add(Me.lblMaxPerctMissingDays)
+        Me.grpMissingDataOpts.Controls.Add(Me.lblMaxPerctDurationMissingData)
+        Me.grpMissingDataOpts.Controls.Add(Me.lblMaxPerctMissindData)
+        Me.grpMissingDataOpts.Controls.Add(Me.ucrChkInterpMissingEntries)
+        Me.grpMissingDataOpts.Controls.Add(Me.ucrChkInterpMissingDays)
+        Me.grpMissingDataOpts.Controls.Add(Me.ucrNudMaxMissingDays)
+        Me.grpMissingDataOpts.Controls.Add(Me.ucrNudMaxDurationMissingData)
+        Me.grpMissingDataOpts.Controls.Add(Me.ucrNudMaxMissingData)
+        resources.ApplyResources(Me.grpMissingDataOpts, "grpMissingDataOpts")
+        Me.grpMissingDataOpts.Name = "grpMissingDataOpts"
+        Me.grpMissingDataOpts.TabStop = False
+        '
+        'lblMissingMethod
+        '
+        resources.ApplyResources(Me.lblMissingMethod, "lblMissingMethod")
+        Me.lblMissingMethod.Name = "lblMissingMethod"
+        '
+        'lblMaxPerctMissingDays
+        '
+        resources.ApplyResources(Me.lblMaxPerctMissingDays, "lblMaxPerctMissingDays")
+        Me.lblMaxPerctMissingDays.Name = "lblMaxPerctMissingDays"
+        '
+        'lblMaxPerctDurationMissingData
+        '
+        resources.ApplyResources(Me.lblMaxPerctDurationMissingData, "lblMaxPerctDurationMissingData")
+        Me.lblMaxPerctDurationMissingData.Name = "lblMaxPerctDurationMissingData"
+        '
+        'lblMaxPerctMissindData
+        '
+        resources.ApplyResources(Me.lblMaxPerctMissindData, "lblMaxPerctMissindData")
+        Me.lblMaxPerctMissindData.Name = "lblMaxPerctMissindData"
+        '
+        'lblNewColName
+        '
+        resources.ApplyResources(Me.lblNewColName, "lblNewColName")
+        Me.lblNewColName.Name = "lblNewColName"
+        '
+        'ucrInputNewColumnName
+        '
+        Me.ucrInputNewColumnName.AddQuotesIfUnrecognised = True
+        Me.ucrInputNewColumnName.IsMultiline = False
+        Me.ucrInputNewColumnName.IsReadOnly = False
+        resources.ApplyResources(Me.ucrInputNewColumnName, "ucrInputNewColumnName")
+        Me.ucrInputNewColumnName.Name = "ucrInputNewColumnName"
+        '
+        'ucrInputComboBoxMissingMethod
+        '
+        Me.ucrInputComboBoxMissingMethod.AddQuotesIfUnrecognised = True
+        Me.ucrInputComboBoxMissingMethod.IsReadOnly = False
+        resources.ApplyResources(Me.ucrInputComboBoxMissingMethod, "ucrInputComboBoxMissingMethod")
+        Me.ucrInputComboBoxMissingMethod.Name = "ucrInputComboBoxMissingMethod"
+        '
+        'ucrChkInterpMissingEntries
+        '
+        Me.ucrChkInterpMissingEntries.Checked = False
+        resources.ApplyResources(Me.ucrChkInterpMissingEntries, "ucrChkInterpMissingEntries")
+        Me.ucrChkInterpMissingEntries.Name = "ucrChkInterpMissingEntries"
+        '
+        'ucrChkInterpMissingDays
+        '
+        Me.ucrChkInterpMissingDays.Checked = False
+        resources.ApplyResources(Me.ucrChkInterpMissingDays, "ucrChkInterpMissingDays")
+        Me.ucrChkInterpMissingDays.Name = "ucrChkInterpMissingDays"
+        '
+        'ucrNudMaxMissingDays
+        '
+        Me.ucrNudMaxMissingDays.DecimalPlaces = New Decimal(New Integer() {0, 0, 0, 0})
+        Me.ucrNudMaxMissingDays.Increment = New Decimal(New Integer() {1, 0, 0, 0})
+        resources.ApplyResources(Me.ucrNudMaxMissingDays, "ucrNudMaxMissingDays")
+        Me.ucrNudMaxMissingDays.Maximum = New Decimal(New Integer() {100, 0, 0, 0})
+        Me.ucrNudMaxMissingDays.Minimum = New Decimal(New Integer() {0, 0, 0, 0})
+        Me.ucrNudMaxMissingDays.Name = "ucrNudMaxMissingDays"
+        Me.ucrNudMaxMissingDays.Value = New Decimal(New Integer() {0, 0, 0, 0})
+        '
+        'ucrNudMaxDurationMissingData
+        '
+        Me.ucrNudMaxDurationMissingData.DecimalPlaces = New Decimal(New Integer() {0, 0, 0, 0})
+        Me.ucrNudMaxDurationMissingData.Increment = New Decimal(New Integer() {1, 0, 0, 0})
+        resources.ApplyResources(Me.ucrNudMaxDurationMissingData, "ucrNudMaxDurationMissingData")
+        Me.ucrNudMaxDurationMissingData.Maximum = New Decimal(New Integer() {100, 0, 0, 0})
+        Me.ucrNudMaxDurationMissingData.Minimum = New Decimal(New Integer() {0, 0, 0, 0})
+        Me.ucrNudMaxDurationMissingData.Name = "ucrNudMaxDurationMissingData"
+        Me.ucrNudMaxDurationMissingData.Value = New Decimal(New Integer() {0, 0, 0, 0})
+        '
+        'ucrNudMaxMissingData
+        '
+        Me.ucrNudMaxMissingData.DecimalPlaces = New Decimal(New Integer() {0, 0, 0, 0})
+        Me.ucrNudMaxMissingData.Increment = New Decimal(New Integer() {1, 0, 0, 0})
+        resources.ApplyResources(Me.ucrNudMaxMissingData, "ucrNudMaxMissingData")
+        Me.ucrNudMaxMissingData.Maximum = New Decimal(New Integer() {100, 0, 0, 0})
+        Me.ucrNudMaxMissingData.Minimum = New Decimal(New Integer() {0, 0, 0, 0})
+        Me.ucrNudMaxMissingData.Name = "ucrNudMaxMissingData"
+        Me.ucrNudMaxMissingData.Value = New Decimal(New Integer() {0, 0, 0, 0})
+        '
         'ucrReceiverYear
         '
         Me.ucrReceiverYear.frmParent = Me
@@ -181,11 +280,6 @@ Partial Class dlgEvapotranspiration
         Me.UcrChkWind.Checked = False
         resources.ApplyResources(Me.UcrChkWind, "UcrChkWind")
         Me.UcrChkWind.Name = "UcrChkWind"
-        '
-        'UcrNewColumnName
-        '
-        resources.ApplyResources(Me.UcrNewColumnName, "UcrNewColumnName")
-        Me.UcrNewColumnName.Name = "UcrNewColumnName"
         '
         'UcrPnlMethod
         '
@@ -285,96 +379,12 @@ Partial Class dlgEvapotranspiration
         resources.ApplyResources(Me.ucrBase, "ucrBase")
         Me.ucrBase.Name = "ucrBase"
         '
-        'grpMissingDataOpts
-        '
-        Me.grpMissingDataOpts.Controls.Add(Me.ucrInputComboBoxMissingMethod)
-        Me.grpMissingDataOpts.Controls.Add(Me.ucrChkMissingMethod)
-        Me.grpMissingDataOpts.Controls.Add(Me.lblMaxPerctMissingDays)
-        Me.grpMissingDataOpts.Controls.Add(Me.lblMaxPerctDurationMissingData)
-        Me.grpMissingDataOpts.Controls.Add(Me.lblMaxPerctMissindData)
-        Me.grpMissingDataOpts.Controls.Add(Me.ucrChkInterpMissingEntries)
-        Me.grpMissingDataOpts.Controls.Add(Me.ucrChkInterpMissingDays)
-        Me.grpMissingDataOpts.Controls.Add(Me.ucrNudMaxMissingDays)
-        Me.grpMissingDataOpts.Controls.Add(Me.ucrNudMaxDurationMissingData)
-        Me.grpMissingDataOpts.Controls.Add(Me.ucrNudMaxMissingData)
-        resources.ApplyResources(Me.grpMissingDataOpts, "grpMissingDataOpts")
-        Me.grpMissingDataOpts.Name = "grpMissingDataOpts"
-        Me.grpMissingDataOpts.TabStop = False
-        '
-        'lblMaxPerctMissingDays
-        '
-        resources.ApplyResources(Me.lblMaxPerctMissingDays, "lblMaxPerctMissingDays")
-        Me.lblMaxPerctMissingDays.Name = "lblMaxPerctMissingDays"
-        '
-        'lblMaxPerctDurationMissingData
-        '
-        resources.ApplyResources(Me.lblMaxPerctDurationMissingData, "lblMaxPerctDurationMissingData")
-        Me.lblMaxPerctDurationMissingData.Name = "lblMaxPerctDurationMissingData"
-        '
-        'lblMaxPerctMissindData
-        '
-        resources.ApplyResources(Me.lblMaxPerctMissindData, "lblMaxPerctMissindData")
-        Me.lblMaxPerctMissindData.Name = "lblMaxPerctMissindData"
-        '
-        'ucrChkInterpMissingEntries
-        '
-        Me.ucrChkInterpMissingEntries.Checked = False
-        resources.ApplyResources(Me.ucrChkInterpMissingEntries, "ucrChkInterpMissingEntries")
-        Me.ucrChkInterpMissingEntries.Name = "ucrChkInterpMissingEntries"
-        '
-        'ucrChkInterpMissingDays
-        '
-        Me.ucrChkInterpMissingDays.Checked = False
-        resources.ApplyResources(Me.ucrChkInterpMissingDays, "ucrChkInterpMissingDays")
-        Me.ucrChkInterpMissingDays.Name = "ucrChkInterpMissingDays"
-        '
-        'ucrNudMaxMissingDays
-        '
-        Me.ucrNudMaxMissingDays.DecimalPlaces = New Decimal(New Integer() {0, 0, 0, 0})
-        Me.ucrNudMaxMissingDays.Increment = New Decimal(New Integer() {1, 0, 0, 0})
-        resources.ApplyResources(Me.ucrNudMaxMissingDays, "ucrNudMaxMissingDays")
-        Me.ucrNudMaxMissingDays.Maximum = New Decimal(New Integer() {100, 0, 0, 0})
-        Me.ucrNudMaxMissingDays.Minimum = New Decimal(New Integer() {0, 0, 0, 0})
-        Me.ucrNudMaxMissingDays.Name = "ucrNudMaxMissingDays"
-        Me.ucrNudMaxMissingDays.Value = New Decimal(New Integer() {0, 0, 0, 0})
-        '
-        'ucrNudMaxDurationMissingData
-        '
-        Me.ucrNudMaxDurationMissingData.DecimalPlaces = New Decimal(New Integer() {0, 0, 0, 0})
-        Me.ucrNudMaxDurationMissingData.Increment = New Decimal(New Integer() {1, 0, 0, 0})
-        resources.ApplyResources(Me.ucrNudMaxDurationMissingData, "ucrNudMaxDurationMissingData")
-        Me.ucrNudMaxDurationMissingData.Maximum = New Decimal(New Integer() {100, 0, 0, 0})
-        Me.ucrNudMaxDurationMissingData.Minimum = New Decimal(New Integer() {0, 0, 0, 0})
-        Me.ucrNudMaxDurationMissingData.Name = "ucrNudMaxDurationMissingData"
-        Me.ucrNudMaxDurationMissingData.Value = New Decimal(New Integer() {0, 0, 0, 0})
-        '
-        'ucrNudMaxMissingData
-        '
-        Me.ucrNudMaxMissingData.DecimalPlaces = New Decimal(New Integer() {0, 0, 0, 0})
-        Me.ucrNudMaxMissingData.Increment = New Decimal(New Integer() {1, 0, 0, 0})
-        resources.ApplyResources(Me.ucrNudMaxMissingData, "ucrNudMaxMissingData")
-        Me.ucrNudMaxMissingData.Maximum = New Decimal(New Integer() {100, 0, 0, 0})
-        Me.ucrNudMaxMissingData.Minimum = New Decimal(New Integer() {0, 0, 0, 0})
-        Me.ucrNudMaxMissingData.Name = "ucrNudMaxMissingData"
-        Me.ucrNudMaxMissingData.Value = New Decimal(New Integer() {0, 0, 0, 0})
-        '
-        'ucrChkMissingMethod
-        '
-        Me.ucrChkMissingMethod.Checked = False
-        resources.ApplyResources(Me.ucrChkMissingMethod, "ucrChkMissingMethod")
-        Me.ucrChkMissingMethod.Name = "ucrChkMissingMethod"
-        '
-        'ucrInputComboBoxMissingMethod
-        '
-        Me.ucrInputComboBoxMissingMethod.AddQuotesIfUnrecognised = True
-        Me.ucrInputComboBoxMissingMethod.IsReadOnly = False
-        resources.ApplyResources(Me.ucrInputComboBoxMissingMethod, "ucrInputComboBoxMissingMethod")
-        Me.ucrInputComboBoxMissingMethod.Name = "ucrInputComboBoxMissingMethod"
-        '
         'dlgEvapotranspiration
         '
         resources.ApplyResources(Me, "$this")
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
+        Me.Controls.Add(Me.ucrInputNewColumnName)
+        Me.Controls.Add(Me.lblNewColName)
         Me.Controls.Add(Me.grpMissingDataOpts)
         Me.Controls.Add(Me.lblYear)
         Me.Controls.Add(Me.ucrReceiverYear)
@@ -383,7 +393,6 @@ Partial Class dlgEvapotranspiration
         Me.Controls.Add(Me.lblDay)
         Me.Controls.Add(Me.ucrReceiverDay)
         Me.Controls.Add(Me.UcrChkWind)
-        Me.Controls.Add(Me.UcrNewColumnName)
         Me.Controls.Add(Me.rdoHargreavesSamani)
         Me.Controls.Add(Me.rdoPenmanMonteith)
         Me.Controls.Add(Me.UcrPnlMethod)
@@ -443,7 +452,6 @@ Partial Class dlgEvapotranspiration
     Friend WithEvents rdoHargreavesSamani As RadioButton
     Friend WithEvents rdoPenmanMonteith As RadioButton
     Friend WithEvents UcrPnlMethod As UcrPanel
-    Friend WithEvents UcrNewColumnName As ucrSave
     Friend WithEvents UcrChkWind As ucrCheck
     Friend WithEvents ucrReceiverDay As ucrReceiverSingle
     Friend WithEvents lblDay As Label
@@ -461,5 +469,7 @@ Partial Class dlgEvapotranspiration
     Friend WithEvents ucrNudMaxDurationMissingData As ucrNud
     Friend WithEvents ucrNudMaxMissingData As ucrNud
     Friend WithEvents ucrInputComboBoxMissingMethod As ucrInputComboBox
-    Friend WithEvents ucrChkMissingMethod As ucrCheck
+    Friend WithEvents lblMissingMethod As Label
+    Friend WithEvents ucrInputNewColumnName As ucrInputTextBox
+    Friend WithEvents lblNewColName As Label
 End Class
