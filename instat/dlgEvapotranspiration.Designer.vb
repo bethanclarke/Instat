@@ -39,12 +39,10 @@ Partial Class dlgEvapotranspiration
         Me.lblYear = New System.Windows.Forms.Label()
         Me.grpMissingDataOpts = New System.Windows.Forms.GroupBox()
         Me.lblMissingMethod = New System.Windows.Forms.Label()
+        Me.ucrInputComboBoxMissingMethod = New instat.ucrInputComboBox()
         Me.lblMaxPerctMissingDays = New System.Windows.Forms.Label()
         Me.lblMaxPerctDurationMissingData = New System.Windows.Forms.Label()
         Me.lblMaxPerctMissindData = New System.Windows.Forms.Label()
-        Me.lblNewColName = New System.Windows.Forms.Label()
-        Me.ucrInputNewColumnName = New instat.ucrInputTextBox()
-        Me.ucrInputComboBoxMissingMethod = New instat.ucrInputComboBox()
         Me.ucrChkInterpMissingEntries = New instat.ucrCheck()
         Me.ucrChkInterpMissingDays = New instat.ucrCheck()
         Me.ucrNudMaxMissingDays = New instat.ucrNud()
@@ -67,6 +65,7 @@ Partial Class dlgEvapotranspiration
         Me.ucrReceiverTmax = New instat.ucrReceiverSingle()
         Me.ucrSelectorEvaop = New instat.ucrSelectorByDataFrameAddRemove()
         Me.ucrBase = New instat.ucrButtons()
+        Me.ucrNewColName = New instat.ucrSave()
         Me.grpMissingDataOpts.SuspendLayout()
         Me.SuspendLayout()
         '
@@ -171,6 +170,13 @@ Partial Class dlgEvapotranspiration
         resources.ApplyResources(Me.lblMissingMethod, "lblMissingMethod")
         Me.lblMissingMethod.Name = "lblMissingMethod"
         '
+        'ucrInputComboBoxMissingMethod
+        '
+        Me.ucrInputComboBoxMissingMethod.AddQuotesIfUnrecognised = True
+        Me.ucrInputComboBoxMissingMethod.IsReadOnly = False
+        resources.ApplyResources(Me.ucrInputComboBoxMissingMethod, "ucrInputComboBoxMissingMethod")
+        Me.ucrInputComboBoxMissingMethod.Name = "ucrInputComboBoxMissingMethod"
+        '
         'lblMaxPerctMissingDays
         '
         resources.ApplyResources(Me.lblMaxPerctMissingDays, "lblMaxPerctMissingDays")
@@ -185,26 +191,6 @@ Partial Class dlgEvapotranspiration
         '
         resources.ApplyResources(Me.lblMaxPerctMissindData, "lblMaxPerctMissindData")
         Me.lblMaxPerctMissindData.Name = "lblMaxPerctMissindData"
-        '
-        'lblNewColName
-        '
-        resources.ApplyResources(Me.lblNewColName, "lblNewColName")
-        Me.lblNewColName.Name = "lblNewColName"
-        '
-        'ucrInputNewColumnName
-        '
-        Me.ucrInputNewColumnName.AddQuotesIfUnrecognised = True
-        Me.ucrInputNewColumnName.IsMultiline = False
-        Me.ucrInputNewColumnName.IsReadOnly = False
-        resources.ApplyResources(Me.ucrInputNewColumnName, "ucrInputNewColumnName")
-        Me.ucrInputNewColumnName.Name = "ucrInputNewColumnName"
-        '
-        'ucrInputComboBoxMissingMethod
-        '
-        Me.ucrInputComboBoxMissingMethod.AddQuotesIfUnrecognised = True
-        Me.ucrInputComboBoxMissingMethod.IsReadOnly = False
-        resources.ApplyResources(Me.ucrInputComboBoxMissingMethod, "ucrInputComboBoxMissingMethod")
-        Me.ucrInputComboBoxMissingMethod.Name = "ucrInputComboBoxMissingMethod"
         '
         'ucrChkInterpMissingEntries
         '
@@ -379,12 +365,16 @@ Partial Class dlgEvapotranspiration
         resources.ApplyResources(Me.ucrBase, "ucrBase")
         Me.ucrBase.Name = "ucrBase"
         '
+        'ucrNewColName
+        '
+        resources.ApplyResources(Me.ucrNewColName, "ucrNewColName")
+        Me.ucrNewColName.Name = "ucrNewColName"
+        '
         'dlgEvapotranspiration
         '
         resources.ApplyResources(Me, "$this")
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.Controls.Add(Me.ucrInputNewColumnName)
-        Me.Controls.Add(Me.lblNewColName)
+        Me.Controls.Add(Me.ucrNewColName)
         Me.Controls.Add(Me.grpMissingDataOpts)
         Me.Controls.Add(Me.lblYear)
         Me.Controls.Add(Me.ucrReceiverYear)
@@ -470,6 +460,5 @@ Partial Class dlgEvapotranspiration
     Friend WithEvents ucrNudMaxMissingData As ucrNud
     Friend WithEvents ucrInputComboBoxMissingMethod As ucrInputComboBox
     Friend WithEvents lblMissingMethod As Label
-    Friend WithEvents ucrInputNewColumnName As ucrInputTextBox
-    Friend WithEvents lblNewColName As Label
+    Friend WithEvents ucrNewColName As ucrSave
 End Class

@@ -156,14 +156,19 @@ Public Class dlgEvapotranspiration
         ucrNudMaxDurationMissingData.SetParameter(New RParameter("z", bNewIncludeArgumentName:=False))
 
         'ucrSave Date Column
-        ucrInputNewColumnName.SetName("Evapotranspiration")
-        ucrInputNewColumnName.SetDataFrameSelector(ucrSelectorEvaop.ucrAvailableDataFrames)
+        ucrNewColName.SetLabelText("New Column Name:")
+        ucrNewColName.SetPrefix("Evapotranspiration")
+        ucrNewColName.SetSaveTypeAsColumn()
+        ucrNewColName.SetDataFrameSelector(ucrSelectorEvaop.ucrAvailableDataFrames)
+        ucrNewColName.SetIsComboBox()
+        ucrNewColName.SetAssignToBooleans(bTempAssignToIsPrefix:=True)
 
         'panel setting
         UcrPnlMethod.AddRadioButton(rdoPenmanMonteith)
         UcrPnlMethod.AddRadioButton(rdoHargreavesSamani)
         UcrPnlMethod.AddFunctionNamesCondition(rdoPenmanMonteith, "ET.PenmanMonteith$Daily")
         UcrPnlMethod.AddFunctionNamesCondition(rdoHargreavesSamani, "ET.HargreavesSamani$Daily")
+
         UcrPnlMethod.AddToLinkedControls(UcrInputCrop, {rdoPenmanMonteith}, bNewLinkedAddRemoveParameter:=True, bNewLinkedHideIfParameterMissing:=True, bNewLinkedChangeToDefaultState:=True, objNewDefaultState:="short")
         UcrPnlMethod.AddToLinkedControls(UcrInputSolar, {rdoPenmanMonteith}, bNewLinkedAddRemoveParameter:=True, bNewLinkedHideIfParameterMissing:=True, bNewLinkedChangeToDefaultState:=True, objNewDefaultState:="sunshine hours")
         UcrPnlMethod.AddToLinkedControls(UcrChkWind, {rdoPenmanMonteith}, bNewLinkedAddRemoveParameter:=True, bNewLinkedHideIfParameterMissing:=True, bNewLinkedChangeToDefaultState:=True, objNewDefaultState:=True)
@@ -184,6 +189,7 @@ Public Class dlgEvapotranspiration
         clsReadInputs = New RFunction
 
         ucrSelectorEvaop.Reset()
+        ucrNewColName.Reset()
         ucrReceiverYear.SetMeAsReceiver()
 
         UcrInputTimeStep.SetName(Chr(34) & "daily" & Chr(34))
@@ -213,7 +219,7 @@ Public Class dlgEvapotranspiration
         clsDataFunctionHS.SetRCommand("data.frame")
 
         clsLibraryEvap.SetRCommand("library")
-        clsLibraryEvap.AddParameter("Evapotranspiration")
+        clsLibraryEvap.AddParameter("Evapotranspiration", "Evapotranspiration", bIncludeArgumentName:=False)
         ucrBase.clsRsyntax.AddToBeforeCodes(clsLibraryEvap, iPosition:=0)
 
         clsDataFunction.SetRCommand("data")
@@ -254,6 +260,7 @@ Public Class dlgEvapotranspiration
         clsDailyOperatorHS.AddParameter("ET.HargreavesSamani", clsRFunctionParameter:=clsHargreavesSamani, iPosition:=0)
         clsDailyOperatorHS.AddParameter("ET.Daily", strParameterValue:="ET.Daily", iPosition:=1)
 
+        ucrBase.clsRsyntax.SetAssignTo(strAssignToName:=ucrNewColName.GetText, strTempDataframe:=ucrSelectorEvaop.ucrAvailableDataFrames.cboAvailableDataFrames.Text, strTempColumn:=ucrNewColName.GetText)
         ucrBase.clsRsyntax.SetBaseROperator(clsDailyOperatorPM)
     End Sub
 
@@ -280,7 +287,7 @@ Public Class dlgEvapotranspiration
         UcrInputCrop.SetRCode(clsETPenmanMonteith, bReset)
         UcrChkWind.SetRCode(clsETPenmanMonteith, bReset)
         UcrChkSaveCSV.SetRCode(clsETPenmanMonteith, bReset)
-        ucrInputNewColumnName.SetRCode(ucrBase.clsRsyntax.clsBaseOperator, bReset)
+        ucrNewColName.SetRCode(ucrBase.clsRsyntax.clsBaseOperator, bReset)
         ucrNudMaxMissingData.SetRCode(clsMissingDataVector, bReset)
         ucrNudMaxMissingDays.SetRCode(clsMissingDataVector, bReset)
         ucrNudMaxDurationMissingData.SetRCode(clsMissingDataVector, bReset)
@@ -290,22 +297,18 @@ Public Class dlgEvapotranspiration
     End Sub
 
     Private Sub TestOKEnabled()
-        If Not ucrInputNewColumnName.IsEmpty() Then
-            If rdoPenmanMonteith.Checked Then
-                If Not ucrInputNewColumnName.IsEmpty() AndAlso (Not ucrReceiverYear.IsEmpty()) AndAlso (Not ucrReceiverMonth.IsEmpty()) AndAlso (Not ucrReceiverDay.IsEmpty()) AndAlso (Not ucrReceiverTmax.IsEmpty()) AndAlso (Not UcrReceiverTmin.IsEmpty()) AndAlso (Not UcrReceiverHumidityMax.IsEmpty()) AndAlso (Not UcrReceiverHumidityMin.IsEmpty()) AndAlso (Not UcrReceiverRadiation.IsEmpty()) AndAlso (Not UcrReceiverWindSpeed.IsEmpty()) AndAlso Not UcrInputTimeStep.IsEmpty AndAlso Not UcrInputSolar.IsEmpty AndAlso Not UcrInputCrop.IsEmpty Then
-                    ucrBase.OKEnabled(True)
-                Else
-                    ucrBase.OKEnabled(False)
-                End If
-            ElseIf rdoHargreavesSamani.Checked Then
-                If Not ucrInputNewColumnName.IsEmpty() AndAlso Not ucrReceiverYear.IsEmpty() AndAlso (Not ucrReceiverMonth.IsEmpty()) AndAlso (Not ucrReceiverDay.IsEmpty()) AndAlso (Not ucrReceiverTmax.IsEmpty()) AndAlso (Not UcrReceiverTmin.IsEmpty()) AndAlso (Not UcrInputTimeStep.IsEmpty()) Then
-                    ucrBase.OKEnabled(True)
-                Else
-                    ucrBase.OKEnabled(False)
-                End If
+        If rdoPenmanMonteith.Checked Then
+            If ucrNewColName.IsComplete AndAlso Not ucrReceiverYear.IsEmpty() AndAlso Not ucrReceiverMonth.IsEmpty() AndAlso Not ucrReceiverDay.IsEmpty() AndAlso Not ucrReceiverTmax.IsEmpty() AndAlso Not UcrReceiverTmin.IsEmpty() AndAlso Not UcrReceiverHumidityMax.IsEmpty() AndAlso Not UcrReceiverHumidityMin.IsEmpty() AndAlso Not UcrReceiverRadiation.IsEmpty() AndAlso Not UcrReceiverWindSpeed.IsEmpty() AndAlso Not UcrInputTimeStep.IsEmpty AndAlso Not UcrInputSolar.IsEmpty AndAlso Not UcrInputCrop.IsEmpty Then
+                ucrBase.OKEnabled(True)
+            Else
+                ucrBase.OKEnabled(False)
             End If
-        Else
-            ucrBase.OKEnabled(False)
+        ElseIf rdoHargreavesSamani.Checked Then
+            If ucrNewColName.IsComplete AndAlso Not ucrReceiverYear.IsEmpty() AndAlso Not ucrReceiverMonth.IsEmpty() AndAlso Not ucrReceiverDay.IsEmpty() AndAlso Not ucrReceiverTmax.IsEmpty() AndAlso Not UcrReceiverTmin.IsEmpty() AndAlso Not UcrInputTimeStep.IsEmpty() Then
+                ucrBase.OKEnabled(True)
+            Else
+                ucrBase.OKEnabled(False)
+            End If
         End If
     End Sub
 
@@ -315,16 +318,16 @@ Public Class dlgEvapotranspiration
         TestOKEnabled()
     End Sub
 
-    Private Sub ucrPnlMethod_ControlContentsChanged(ucrChangedControl As ucrCore) Handles UcrPnlMethod.ControlContentsChanged
+    Private Sub ucrBase_BeforeClickOk(sender As Object, e As EventArgs) Handles ucrBase.BeforeClickOk
         If rdoPenmanMonteith.Checked Then
-            clsReadInputs.AddParameter("varnames", clsRFunctionParameter:=clsVarnamesVectorPM, iPosition:=0)
-            clsReadInputs.AddParameter("climatedata", clsRFunctionParameter:=clsDataFunctionPM, iPosition:=1)
-            clsDailyOperatorPM.SetAssignTo(ucrInputNewColumnName.GetText, strTempDataframe:=ucrSelectorEvaop.ucrAvailableDataFrames.cboAvailableDataFrames.Text, strTempColumn:=ucrInputNewColumnName.GetText)
+            ucrBase.clsRsyntax.SetBaseROperator(clsDailyOperatorPM)
         ElseIf rdoHargreavesSamani.Checked Then
-            clsReadInputs.AddParameter("varnames", clsRFunctionParameter:=clsVarnamesVectorHS, iPosition:=0)
-            clsReadInputs.AddParameter("climatedata", clsRFunctionParameter:=clsDataFunctionHS, iPosition:=1)
-            clsDailyOperatorHS.SetAssignTo(ucrInputNewColumnName.GetText, strTempDataframe:=ucrSelectorEvaop.ucrAvailableDataFrames.cboAvailableDataFrames.Text, strTempColumn:=ucrInputNewColumnName.GetText)
+            ucrBase.clsRsyntax.SetBaseROperator(clsDailyOperatorHS)
         End If
+    End Sub
+
+    Private Sub ucrPnlMethod_ControlContentsChanged(ucrChangedControl As ucrCore) Handles UcrPnlMethod.ControlContentsChanged
+        Method()
         TestOKEnabled()
     End Sub
 
@@ -332,7 +335,7 @@ Public Class dlgEvapotranspiration
         TestOKEnabled()
     End Sub
 
-    Private Sub ucrInputTimeStep_ControlValueChanged(ucrChangedControl As ucrCore) Handles UcrInputTimeStep.ControlValueChanged, UcrInputSolar.ControlValueChanged, UcrInputCrop.ControlValueChanged, UcrInputSolar.ControlValueChanged, ucrInputComboBoxMissingMethod.ControlValueChanged, ucrInputNewColumnName.ControlValueChanged
+    Private Sub ucrInputTimeStep_ControlValueChanged(ucrChangedControl As ucrCore) Handles UcrInputTimeStep.ControlValueChanged, UcrInputSolar.ControlValueChanged, UcrInputCrop.ControlValueChanged, UcrInputSolar.ControlValueChanged, ucrInputComboBoxMissingMethod.ControlValueChanged
         TestOKEnabled()
     End Sub
 
@@ -340,8 +343,20 @@ Public Class dlgEvapotranspiration
         TestOKEnabled()
     End Sub
 
-    Private Sub UcrChkWind_ControlContentsChanged(ucrChangedControl As ucrCore) Handles UcrChkWind.ControlContentsChanged, UcrChkSaveCSV.ControlContentsChanged, ucrChkInterpMissingEntries.ControlContentsChanged, ucrChkInterpMissingDays.ControlContentsChanged
+    Private Sub ucrNewColName_ControlContentsChanged(ucrChangedControl As ucrCore) Handles ucrNewColName.ControlContentsChanged
         TestOKEnabled()
+    End Sub
+
+    Private Sub Method()
+        If rdoPenmanMonteith.Checked Then
+            clsReadInputs.AddParameter("varnames", clsRFunctionParameter:=clsVarnamesVectorPM, iPosition:=0)
+            clsReadInputs.AddParameter("climatedata", clsRFunctionParameter:=clsDataFunctionPM, iPosition:=1)
+            'clsDailyOperatorPM.SetAssignTo(ucrNewColName.GetText, strTempDataframe:=ucrSelectorEvaop.ucrAvailableDataFrames.cboAvailableDataFrames.Text, strTempColumn:=ucrNewColName.GetText)
+        ElseIf rdoHargreavesSamani.Checked Then
+            clsReadInputs.AddParameter("varnames", clsRFunctionParameter:=clsVarnamesVectorHS, iPosition:=0)
+            clsReadInputs.AddParameter("climatedata", clsRFunctionParameter:=clsDataFunctionHS, iPosition:=1)
+            'clsDailyOperatorHS.SetAssignTo(ucrNewColName.GetText, strTempDataframe:=ucrSelectorEvaop.ucrAvailableDataFrames.cboAvailableDataFrames.Text, strTempColumn:=ucrNewColName.GetText)
+        End If
     End Sub
 End Class
 
