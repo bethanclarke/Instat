@@ -355,6 +355,7 @@ Partial Class dlgEvapotranspiration
         '
         'ucrSelectorEvaop
         '
+
         Me.ucrSelectorEvaop.bShowHiddenColumns = False
         Me.ucrSelectorEvaop.bUseCurrentFilter = True
         resources.ApplyResources(Me.ucrSelectorEvaop, "ucrSelectorEvaop")

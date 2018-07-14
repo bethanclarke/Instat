@@ -166,8 +166,8 @@ Public Class dlgEvapotranspiration
         'panel setting
         UcrPnlMethod.AddRadioButton(rdoPenmanMonteith)
         UcrPnlMethod.AddRadioButton(rdoHargreavesSamani)
-        UcrPnlMethod.AddFunctionNamesCondition(rdoPenmanMonteith, "ET.PenmanMonteith$Daily")
-        UcrPnlMethod.AddFunctionNamesCondition(rdoHargreavesSamani, "ET.HargreavesSamani$Daily")
+        UcrPnlMethod.AddParameterPresentCondition(rdoPenmanMonteith, "ET.PenmanMonteith")
+        UcrPnlMethod.AddParameterPresentCondition(rdoHargreavesSamani, "ET.HargreavesSamani")
 
         UcrPnlMethod.AddToLinkedControls(UcrInputCrop, {rdoPenmanMonteith}, bNewLinkedAddRemoveParameter:=True, bNewLinkedHideIfParameterMissing:=True, bNewLinkedChangeToDefaultState:=True, objNewDefaultState:="short")
         UcrPnlMethod.AddToLinkedControls(UcrInputSolar, {rdoPenmanMonteith}, bNewLinkedAddRemoveParameter:=True, bNewLinkedHideIfParameterMissing:=True, bNewLinkedChangeToDefaultState:=True, objNewDefaultState:="sunshine hours")
