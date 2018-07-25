@@ -41,6 +41,7 @@ Public Class dlgEvapotranspiration
     Private Sub InitialiseDialog()
         ucrBase.clsRsyntax.iCallType = 2
         'ucrBase.iHelpTopicID = 510
+        Dim dctInputCrops As New Dictionary(Of String, String)
 
         ucrReceiverYear.SetMeAsReceiver()
 
@@ -120,7 +121,9 @@ Public Class dlgEvapotranspiration
         UcrInputSolar.SetDropDownStyleAsNonEditable()
 
         UcrInputCrop.SetParameter(New RParameter("crops", 5))
-        UcrInputCrop.SetItems({Chr(34) & "short" & Chr(34), Chr(34) & "tall" & Chr(34)})
+        dctInputCrops.Add("short", "short")
+        dctInputCrops.Add("tall", "tall")
+        UcrInputCrop.SetItems(dctInputCrops)
         UcrInputCrop.SetRDefault(Chr(34) & "short" & Chr(34))
         UcrInputCrop.SetDropDownStyleAsNonEditable()
         UcrInputCrop.SetLinkedDisplayControl(lblCrop)
