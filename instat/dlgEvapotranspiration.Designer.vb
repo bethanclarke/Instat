@@ -34,23 +34,20 @@ Partial Class dlgEvapotranspiration
         Me.lblCrop = New System.Windows.Forms.Label()
         Me.rdoPenmanMonteith = New System.Windows.Forms.RadioButton()
         Me.rdoHargreavesSamani = New System.Windows.Forms.RadioButton()
-        Me.lblDay = New System.Windows.Forms.Label()
-        Me.lblMonth = New System.Windows.Forms.Label()
-        Me.lblYear = New System.Windows.Forms.Label()
+        Me.lblDate = New System.Windows.Forms.Label()
         Me.grpMissingDataOpts = New System.Windows.Forms.GroupBox()
         Me.lblMissingMethod = New System.Windows.Forms.Label()
-        Me.ucrInputComboBoxMissingMethod = New instat.ucrInputComboBox()
         Me.lblMaxPerctMissingDays = New System.Windows.Forms.Label()
         Me.lblMaxPerctDurationMissingData = New System.Windows.Forms.Label()
         Me.lblMaxPerctMissindData = New System.Windows.Forms.Label()
+        Me.ucrNewColName = New instat.ucrSave()
+        Me.ucrInputComboBoxMissingMethod = New instat.ucrInputComboBox()
         Me.ucrChkInterpMissingEntries = New instat.ucrCheck()
         Me.ucrChkInterpMissingDays = New instat.ucrCheck()
         Me.ucrNudMaxMissingDays = New instat.ucrNud()
         Me.ucrNudMaxDurationMissingData = New instat.ucrNud()
         Me.ucrNudMaxMissingData = New instat.ucrNud()
-        Me.ucrReceiverYear = New instat.ucrReceiverSingle()
-        Me.ucrReceiverMonth = New instat.ucrReceiverSingle()
-        Me.ucrReceiverDay = New instat.ucrReceiverSingle()
+        Me.ucrReceiverDate = New instat.ucrReceiverSingle()
         Me.UcrChkWind = New instat.ucrCheck()
         Me.UcrPnlMethod = New instat.UcrPanel()
         Me.UcrChkSaveCSV = New instat.ucrCheck()
@@ -62,10 +59,9 @@ Partial Class dlgEvapotranspiration
         Me.UcrReceiverHumidityMin = New instat.ucrReceiverSingle()
         Me.UcrReceiverHumidityMax = New instat.ucrReceiverSingle()
         Me.UcrReceiverTmin = New instat.ucrReceiverSingle()
-        Me.ucrReceiverTmax = New instat.ucrReceiverSingle()
         Me.ucrSelectorEvaop = New instat.ucrSelectorByDataFrameAddRemove()
         Me.ucrBase = New instat.ucrButtons()
-        Me.ucrNewColName = New instat.ucrSave()
+        Me.ucrReceiverTmax = New instat.ucrReceiverSingle()
         Me.grpMissingDataOpts.SuspendLayout()
         Me.SuspendLayout()
         '
@@ -134,20 +130,10 @@ Partial Class dlgEvapotranspiration
         Me.rdoHargreavesSamani.TabStop = True
         Me.rdoHargreavesSamani.UseVisualStyleBackColor = True
         '
-        'lblDay
+        'lblDate
         '
-        resources.ApplyResources(Me.lblDay, "lblDay")
-        Me.lblDay.Name = "lblDay"
-        '
-        'lblMonth
-        '
-        resources.ApplyResources(Me.lblMonth, "lblMonth")
-        Me.lblMonth.Name = "lblMonth"
-        '
-        'lblYear
-        '
-        resources.ApplyResources(Me.lblYear, "lblYear")
-        Me.lblYear.Name = "lblYear"
+        resources.ApplyResources(Me.lblDate, "lblDate")
+        Me.lblDate.Name = "lblDate"
         '
         'grpMissingDataOpts
         '
@@ -170,13 +156,6 @@ Partial Class dlgEvapotranspiration
         resources.ApplyResources(Me.lblMissingMethod, "lblMissingMethod")
         Me.lblMissingMethod.Name = "lblMissingMethod"
         '
-        'ucrInputComboBoxMissingMethod
-        '
-        Me.ucrInputComboBoxMissingMethod.AddQuotesIfUnrecognised = True
-        Me.ucrInputComboBoxMissingMethod.IsReadOnly = False
-        resources.ApplyResources(Me.ucrInputComboBoxMissingMethod, "ucrInputComboBoxMissingMethod")
-        Me.ucrInputComboBoxMissingMethod.Name = "ucrInputComboBoxMissingMethod"
-        '
         'lblMaxPerctMissingDays
         '
         resources.ApplyResources(Me.lblMaxPerctMissingDays, "lblMaxPerctMissingDays")
@@ -191,6 +170,18 @@ Partial Class dlgEvapotranspiration
         '
         resources.ApplyResources(Me.lblMaxPerctMissindData, "lblMaxPerctMissindData")
         Me.lblMaxPerctMissindData.Name = "lblMaxPerctMissindData"
+        '
+        'ucrNewColName
+        '
+        resources.ApplyResources(Me.ucrNewColName, "ucrNewColName")
+        Me.ucrNewColName.Name = "ucrNewColName"
+        '
+        'ucrInputComboBoxMissingMethod
+        '
+        Me.ucrInputComboBoxMissingMethod.AddQuotesIfUnrecognised = True
+        Me.ucrInputComboBoxMissingMethod.IsReadOnly = False
+        resources.ApplyResources(Me.ucrInputComboBoxMissingMethod, "ucrInputComboBoxMissingMethod")
+        Me.ucrInputComboBoxMissingMethod.Name = "ucrInputComboBoxMissingMethod"
         '
         'ucrChkInterpMissingEntries
         '
@@ -234,32 +225,14 @@ Partial Class dlgEvapotranspiration
         Me.ucrNudMaxMissingData.Name = "ucrNudMaxMissingData"
         Me.ucrNudMaxMissingData.Value = New Decimal(New Integer() {0, 0, 0, 0})
         '
-        'ucrReceiverYear
+        'ucrReceiverDate
         '
-        Me.ucrReceiverYear.frmParent = Me
-        resources.ApplyResources(Me.ucrReceiverYear, "ucrReceiverYear")
-        Me.ucrReceiverYear.Name = "ucrReceiverYear"
-        Me.ucrReceiverYear.Selector = Nothing
-        Me.ucrReceiverYear.strNcFilePath = ""
-        Me.ucrReceiverYear.ucrSelector = Nothing
-        '
-        'ucrReceiverMonth
-        '
-        Me.ucrReceiverMonth.frmParent = Me
-        resources.ApplyResources(Me.ucrReceiverMonth, "ucrReceiverMonth")
-        Me.ucrReceiverMonth.Name = "ucrReceiverMonth"
-        Me.ucrReceiverMonth.Selector = Nothing
-        Me.ucrReceiverMonth.strNcFilePath = ""
-        Me.ucrReceiverMonth.ucrSelector = Nothing
-        '
-        'ucrReceiverDay
-        '
-        Me.ucrReceiverDay.frmParent = Me
-        resources.ApplyResources(Me.ucrReceiverDay, "ucrReceiverDay")
-        Me.ucrReceiverDay.Name = "ucrReceiverDay"
-        Me.ucrReceiverDay.Selector = Nothing
-        Me.ucrReceiverDay.strNcFilePath = ""
-        Me.ucrReceiverDay.ucrSelector = Nothing
+        Me.ucrReceiverDate.frmParent = Me
+        resources.ApplyResources(Me.ucrReceiverDate, "ucrReceiverDate")
+        Me.ucrReceiverDate.Name = "ucrReceiverDate"
+        Me.ucrReceiverDate.Selector = Nothing
+        Me.ucrReceiverDate.strNcFilePath = ""
+        Me.ucrReceiverDate.ucrSelector = Nothing
         '
         'UcrChkWind
         '
@@ -344,18 +317,8 @@ Partial Class dlgEvapotranspiration
         Me.UcrReceiverTmin.strNcFilePath = ""
         Me.UcrReceiverTmin.ucrSelector = Nothing
         '
-        'ucrReceiverTmax
-        '
-        Me.ucrReceiverTmax.frmParent = Me
-        resources.ApplyResources(Me.ucrReceiverTmax, "ucrReceiverTmax")
-        Me.ucrReceiverTmax.Name = "ucrReceiverTmax"
-        Me.ucrReceiverTmax.Selector = Nothing
-        Me.ucrReceiverTmax.strNcFilePath = ""
-        Me.ucrReceiverTmax.ucrSelector = Nothing
-        '
         'ucrSelectorEvaop
         '
-
         Me.ucrSelectorEvaop.bShowHiddenColumns = False
         Me.ucrSelectorEvaop.bUseCurrentFilter = True
         resources.ApplyResources(Me.ucrSelectorEvaop, "ucrSelectorEvaop")
@@ -366,10 +329,14 @@ Partial Class dlgEvapotranspiration
         resources.ApplyResources(Me.ucrBase, "ucrBase")
         Me.ucrBase.Name = "ucrBase"
         '
-        'ucrNewColName
+        'ucrReceiverTmax
         '
-        resources.ApplyResources(Me.ucrNewColName, "ucrNewColName")
-        Me.ucrNewColName.Name = "ucrNewColName"
+        Me.ucrReceiverTmax.frmParent = Me
+        resources.ApplyResources(Me.ucrReceiverTmax, "ucrReceiverTmax")
+        Me.ucrReceiverTmax.Name = "ucrReceiverTmax"
+        Me.ucrReceiverTmax.Selector = Nothing
+        Me.ucrReceiverTmax.strNcFilePath = ""
+        Me.ucrReceiverTmax.ucrSelector = Nothing
         '
         'dlgEvapotranspiration
         '
@@ -377,12 +344,8 @@ Partial Class dlgEvapotranspiration
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.Controls.Add(Me.ucrNewColName)
         Me.Controls.Add(Me.grpMissingDataOpts)
-        Me.Controls.Add(Me.lblYear)
-        Me.Controls.Add(Me.ucrReceiverYear)
-        Me.Controls.Add(Me.lblMonth)
-        Me.Controls.Add(Me.ucrReceiverMonth)
-        Me.Controls.Add(Me.lblDay)
-        Me.Controls.Add(Me.ucrReceiverDay)
+        Me.Controls.Add(Me.lblDate)
+        Me.Controls.Add(Me.ucrReceiverDate)
         Me.Controls.Add(Me.UcrChkWind)
         Me.Controls.Add(Me.rdoHargreavesSamani)
         Me.Controls.Add(Me.rdoPenmanMonteith)
@@ -421,7 +384,6 @@ Partial Class dlgEvapotranspiration
 
     Friend WithEvents ucrBase As ucrButtons
     Friend WithEvents ucrSelectorEvaop As ucrSelectorByDataFrameAddRemove
-    Friend WithEvents ucrReceiverTmax As ucrReceiverSingle
     Friend WithEvents lblTmax As Label
     Friend WithEvents lblHumidityMin As Label
     Friend WithEvents UcrReceiverHumidityMin As ucrReceiverSingle
@@ -444,12 +406,8 @@ Partial Class dlgEvapotranspiration
     Friend WithEvents rdoPenmanMonteith As RadioButton
     Friend WithEvents UcrPnlMethod As UcrPanel
     Friend WithEvents UcrChkWind As ucrCheck
-    Friend WithEvents ucrReceiverDay As ucrReceiverSingle
-    Friend WithEvents lblDay As Label
-    Friend WithEvents ucrReceiverYear As ucrReceiverSingle
-    Friend WithEvents lblMonth As Label
-    Friend WithEvents ucrReceiverMonth As ucrReceiverSingle
-    Friend WithEvents lblYear As Label
+    Friend WithEvents ucrReceiverDate As ucrReceiverSingle
+    Friend WithEvents lblDate As Label
     Friend WithEvents grpMissingDataOpts As GroupBox
     Friend WithEvents lblMaxPerctMissingDays As Label
     Friend WithEvents lblMaxPerctDurationMissingData As Label
@@ -462,4 +420,5 @@ Partial Class dlgEvapotranspiration
     Friend WithEvents ucrInputComboBoxMissingMethod As ucrInputComboBox
     Friend WithEvents lblMissingMethod As Label
     Friend WithEvents ucrNewColName As ucrSave
+    Friend WithEvents ucrReceiverTmax As ucrReceiverSingle
 End Class
