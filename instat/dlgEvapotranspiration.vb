@@ -22,7 +22,7 @@ Public Class dlgEvapotranspiration
     Private bReset As Boolean = True
     Private bResetSubdialog As Boolean = False
     Private clsETPenmanMonteith, clsHargreavesSamani, clsDataFunctionPM, clsDataFunctionHS, clsDataFunction, clsReadInputs, clsVector, clsMissingDataVector, clsVarnamesVectorPM, clsVarnamesVectorHS, clsLibraryEvap As New RFunction
-    Private clsDayFunc, clsMonthFunc, clsMonthConvertFunc, clsYearFunc As New RFunction
+    Private clsDayFunc, clsMonthFunc, clsYearFunc As New RFunction
     Private clsDailyOperatorPM, clsDailyOperatorHS As New ROperator
 
     Private Sub dlgdlgEvapotranspiration_Load(sender As Object, e As EventArgs) Handles MyBase.Load
@@ -112,7 +112,7 @@ Public Class dlgEvapotranspiration
         UcrInputSolar.SetRDefault(Chr(34) & "sunshine hours" & Chr(34))
         dctInputSolar.Add("sunshine hours", Chr(34) & "sunshine hours" & Chr(34))
         dctInputSolar.Add("cloud", Chr(34) & "cloud" & Chr(34))
-        dctInputSolar.Add("monthly precipitation", Chr(34) & "monthly precipitation" & Chr(34))
+        dctInputSolar.Add("data", Chr(34) & "data" & Chr(34))
         UcrInputSolar.SetItems(dctInputSolar)
         UcrInputSolar.SetDropDownStyleAsNonEditable()
 
@@ -193,7 +193,6 @@ Public Class dlgEvapotranspiration
         clsReadInputs = New RFunction
         clsDayFunc = New RFunction
         clsMonthFunc = New RFunction
-        clsMonthConvertFunc = New RFunction
         clsYearFunc = New RFunction
 
         ucrSelectorEvaop.Reset()
@@ -212,11 +211,7 @@ Public Class dlgEvapotranspiration
         clsDayFunc.SetPackageName("lubridate")
 
         clsMonthFunc.SetRCommand("month")
-        clsMonthFunc.AddParameter("x", clsRFunctionParameter:=clsMonthConvertFunc, bIncludeArgumentName:=False)
         clsMonthFunc.SetPackageName("lubridate")
-
-        clsMonthConvertFunc.SetRCommand("as.POSIXlt")
-        clsMonthConvertFunc.AddParameter("format", Chr(34) & "%d/%m/%Y" & Chr(34))
 
         clsYearFunc.SetRCommand("year")
         clsYearFunc.SetPackageName("lubridate")
@@ -266,6 +261,12 @@ Public Class dlgEvapotranspiration
         clsETPenmanMonteith.AddParameter("ts", Chr(34) & "daily" & Chr(34), iPosition:=2)
         clsETPenmanMonteith.AddParameter("save.csv", Chr(34) & "no" & Chr(34))
 
+        clsReadInputs.AddParameter("varnames", clsRFunctionParameter:=clsVarnamesVectorPM, iPosition:=0)
+        clsReadInputs.AddParameter("climatedata", clsRFunctionParameter:=clsDataFunctionPM, iPosition:=1)
+        clsDataFunctionPM.AddParameter("Year", clsRFunctionParameter:=clsYearFunc)
+        clsDataFunctionPM.AddParameter("Month", clsRFunctionParameter:=clsMonthFunc)
+        clsDataFunctionPM.AddParameter("Day", clsRFunctionParameter:=clsDayFunc)
+
         clsHargreavesSamani.SetRCommand("ET.HargreavesSamani")
         clsHargreavesSamani.AddParameter("data", clsRFunctionParameter:=clsReadInputs, iPosition:=0)
         clsHargreavesSamani.AddParameter("constants", "constants", iPosition:=1, bIncludeArgumentName:=False)
@@ -286,7 +287,7 @@ Public Class dlgEvapotranspiration
     End Sub
 
     Private Sub SetRCodeForControls(bReset As Boolean)
-        ucrReceiverDate.AddAdditionalCodeParameterPair(clsMonthConvertFunc, New RParameter("x", 0), iAdditionalPairNo:=1)
+        ucrReceiverDate.AddAdditionalCodeParameterPair(clsMonthFunc, New RParameter("x", 0), iAdditionalPairNo:=1)
         ucrReceiverDate.AddAdditionalCodeParameterPair(clsYearFunc, New RParameter("x", 0), iAdditionalPairNo:=2)
         ucrReceiverTmax.AddAdditionalCodeParameterPair(clsDataFunctionHS, New RParameter("Tmax", 3), iAdditionalPairNo:=1)
         UcrReceiverTmin.AddAdditionalCodeParameterPair(clsDataFunctionHS, New RParameter("Tmin", 4), iAdditionalPairNo:=1)
@@ -350,7 +351,28 @@ Public Class dlgEvapotranspiration
         TestOKEnabled()
     End Sub
 
-    Private Sub ucrReceiverTmax_ControlValueChanged(ucrChangedControl As ucrCore) Handles UcrReceiverRadiation.ControlValueChanged, UcrReceiverHumidityMin.ControlValueChanged, UcrReceiverHumidityMax.ControlValueChanged, UcrReceiverTmin.ControlValueChanged, ucrReceiverTmax.ControlValueChanged, ucrReceiverDate.ControlValueChanged, UcrReceiverWindSpeed.ControlValueChanged
+    Private Sub ucrReceiverTmax_ControlValueChanged(ucrChangedControl As ucrCore) Handles UcrReceiverHumidityMin.ControlValueChanged, UcrReceiverHumidityMax.ControlValueChanged, UcrReceiverTmin.ControlValueChanged, ucrReceiverTmax.ControlValueChanged, ucrReceiverDate.ControlValueChanged, UcrReceiverWindSpeed.ControlValueChanged
+        TestOKEnabled()
+    End Sub
+
+    Private Sub UcrInputSolar_ControlValueChanged(ucrChangedControl As ucrCore) Handles UcrInputSolar.ControlValueChanged, UcrReceiverRadiation
+        Select Case UcrInputSolar.GetText
+            Case "sunshine hours"
+                UcrReceiverRadiation.SetParameter(New RParameter("n", 6))
+                UcrReceiverRadiation.SetParameterIsRFunction()
+                UcrReceiverRadiation.SetClimaticType("sunshine hours")
+                UcrReceiverRadiation.bAutoFill = True
+            Case "data"
+                UcrReceiverRadiation.SetParameter(New RParameter("Rs", 6))
+                UcrReceiverRadiation.SetParameterIsRFunction()
+                UcrReceiverRadiation.SetClimaticType("radiation")
+                UcrReceiverRadiation.bAutoFill = True
+            Case "cloud"
+                UcrReceiverRadiation.SetParameter(New RParameter("Cd", 6))
+                UcrReceiverRadiation.SetParameterIsRFunction()
+                UcrReceiverRadiation.SetClimaticType("cloud")
+                UcrReceiverRadiation.bAutoFill = True
+        End Select
         TestOKEnabled()
     End Sub
 

@@ -37,16 +37,16 @@ Partial Class dlgEvapotranspiration
         Me.lblDate = New System.Windows.Forms.Label()
         Me.grpMissingDataOpts = New System.Windows.Forms.GroupBox()
         Me.lblMissingMethod = New System.Windows.Forms.Label()
+        Me.ucrInputComboBoxMissingMethod = New instat.ucrInputComboBox()
         Me.lblMaxPerctMissingDays = New System.Windows.Forms.Label()
         Me.lblMaxPerctDurationMissingData = New System.Windows.Forms.Label()
         Me.lblMaxPerctMissindData = New System.Windows.Forms.Label()
-        Me.ucrNewColName = New instat.ucrSave()
-        Me.ucrInputComboBoxMissingMethod = New instat.ucrInputComboBox()
         Me.ucrChkInterpMissingEntries = New instat.ucrCheck()
         Me.ucrChkInterpMissingDays = New instat.ucrCheck()
         Me.ucrNudMaxMissingDays = New instat.ucrNud()
         Me.ucrNudMaxDurationMissingData = New instat.ucrNud()
         Me.ucrNudMaxMissingData = New instat.ucrNud()
+        Me.ucrNewColName = New instat.ucrSave()
         Me.ucrReceiverDate = New instat.ucrReceiverSingle()
         Me.UcrChkWind = New instat.ucrCheck()
         Me.UcrPnlMethod = New instat.UcrPanel()
@@ -62,7 +62,9 @@ Partial Class dlgEvapotranspiration
         Me.ucrSelectorEvaop = New instat.ucrSelectorByDataFrameAddRemove()
         Me.ucrBase = New instat.ucrButtons()
         Me.ucrReceiverTmax = New instat.ucrReceiverSingle()
+        Me.GroupBox1 = New System.Windows.Forms.GroupBox()
         Me.grpMissingDataOpts.SuspendLayout()
+        Me.GroupBox1.SuspendLayout()
         Me.SuspendLayout()
         '
         'lblTmax
@@ -156,6 +158,13 @@ Partial Class dlgEvapotranspiration
         resources.ApplyResources(Me.lblMissingMethod, "lblMissingMethod")
         Me.lblMissingMethod.Name = "lblMissingMethod"
         '
+        'ucrInputComboBoxMissingMethod
+        '
+        Me.ucrInputComboBoxMissingMethod.AddQuotesIfUnrecognised = True
+        Me.ucrInputComboBoxMissingMethod.IsReadOnly = False
+        resources.ApplyResources(Me.ucrInputComboBoxMissingMethod, "ucrInputComboBoxMissingMethod")
+        Me.ucrInputComboBoxMissingMethod.Name = "ucrInputComboBoxMissingMethod"
+        '
         'lblMaxPerctMissingDays
         '
         resources.ApplyResources(Me.lblMaxPerctMissingDays, "lblMaxPerctMissingDays")
@@ -170,18 +179,6 @@ Partial Class dlgEvapotranspiration
         '
         resources.ApplyResources(Me.lblMaxPerctMissindData, "lblMaxPerctMissindData")
         Me.lblMaxPerctMissindData.Name = "lblMaxPerctMissindData"
-        '
-        'ucrNewColName
-        '
-        resources.ApplyResources(Me.ucrNewColName, "ucrNewColName")
-        Me.ucrNewColName.Name = "ucrNewColName"
-        '
-        'ucrInputComboBoxMissingMethod
-        '
-        Me.ucrInputComboBoxMissingMethod.AddQuotesIfUnrecognised = True
-        Me.ucrInputComboBoxMissingMethod.IsReadOnly = False
-        resources.ApplyResources(Me.ucrInputComboBoxMissingMethod, "ucrInputComboBoxMissingMethod")
-        Me.ucrInputComboBoxMissingMethod.Name = "ucrInputComboBoxMissingMethod"
         '
         'ucrChkInterpMissingEntries
         '
@@ -224,6 +221,11 @@ Partial Class dlgEvapotranspiration
         Me.ucrNudMaxMissingData.Minimum = New Decimal(New Integer() {0, 0, 0, 0})
         Me.ucrNudMaxMissingData.Name = "ucrNudMaxMissingData"
         Me.ucrNudMaxMissingData.Value = New Decimal(New Integer() {0, 0, 0, 0})
+        '
+        'ucrNewColName
+        '
+        resources.ApplyResources(Me.ucrNewColName, "ucrNewColName")
+        Me.ucrNewColName.Name = "ucrNewColName"
         '
         'ucrReceiverDate
         '
@@ -319,6 +321,7 @@ Partial Class dlgEvapotranspiration
         '
         'ucrSelectorEvaop
         '
+        Me.ucrSelectorEvaop.bDropUnusedFilterLevels = False
         Me.ucrSelectorEvaop.bShowHiddenColumns = False
         Me.ucrSelectorEvaop.bUseCurrentFilter = True
         resources.ApplyResources(Me.ucrSelectorEvaop, "ucrSelectorEvaop")
@@ -338,10 +341,22 @@ Partial Class dlgEvapotranspiration
         Me.ucrReceiverTmax.strNcFilePath = ""
         Me.ucrReceiverTmax.ucrSelector = Nothing
         '
+        'GroupBox1
+        '
+        Me.GroupBox1.Controls.Add(Me.UcrInputSolar)
+        Me.GroupBox1.Controls.Add(Me.lblSolar)
+        Me.GroupBox1.Controls.Add(Me.UcrReceiverRadiation)
+        Me.GroupBox1.Controls.Add(Me.lblRadiation)
+        resources.ApplyResources(Me.GroupBox1, "GroupBox1")
+        Me.GroupBox1.Name = "GroupBox1"
+        Me.GroupBox1.TabStop = False
+        '
         'dlgEvapotranspiration
         '
         resources.ApplyResources(Me, "$this")
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
+        Me.Controls.Add(Me.UcrInputCrop)
+        Me.Controls.Add(Me.GroupBox1)
         Me.Controls.Add(Me.ucrNewColName)
         Me.Controls.Add(Me.grpMissingDataOpts)
         Me.Controls.Add(Me.lblDate)
@@ -352,15 +367,10 @@ Partial Class dlgEvapotranspiration
         Me.Controls.Add(Me.UcrPnlMethod)
         Me.Controls.Add(Me.UcrChkSaveCSV)
         Me.Controls.Add(Me.lblCrop)
-        Me.Controls.Add(Me.UcrInputCrop)
-        Me.Controls.Add(Me.lblSolar)
-        Me.Controls.Add(Me.UcrInputSolar)
         Me.Controls.Add(Me.lblTimeStep)
         Me.Controls.Add(Me.UcrInputTimeStep)
         Me.Controls.Add(Me.lblWindSpeed)
         Me.Controls.Add(Me.UcrReceiverWindSpeed)
-        Me.Controls.Add(Me.lblRadiation)
-        Me.Controls.Add(Me.UcrReceiverRadiation)
         Me.Controls.Add(Me.lblHumidityMin)
         Me.Controls.Add(Me.UcrReceiverHumidityMin)
         Me.Controls.Add(Me.lblHumidityMax)
@@ -377,6 +387,8 @@ Partial Class dlgEvapotranspiration
         Me.Name = "dlgEvapotranspiration"
         Me.grpMissingDataOpts.ResumeLayout(False)
         Me.grpMissingDataOpts.PerformLayout()
+        Me.GroupBox1.ResumeLayout(False)
+        Me.GroupBox1.PerformLayout()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -421,4 +433,5 @@ Partial Class dlgEvapotranspiration
     Friend WithEvents lblMissingMethod As Label
     Friend WithEvents ucrNewColName As ucrSave
     Friend WithEvents ucrReceiverTmax As ucrReceiverSingle
+    Friend WithEvents GroupBox1 As GroupBox
 End Class
