@@ -174,11 +174,9 @@ Public Class dlgEvapotranspiration
         UcrPnlMethod.AddParameterPresentCondition(rdoHargreavesSamani, "ET.HargreavesSamani")
 
         UcrPnlMethod.AddToLinkedControls(UcrInputCrop, {rdoPenmanMonteith}, bNewLinkedAddRemoveParameter:=True, bNewLinkedHideIfParameterMissing:=True, bNewLinkedChangeToDefaultState:=True, objNewDefaultState:=Chr(34) & "short" & Chr(34))
-        'UcrPnlMethod.AddToLinkedControls(UcrInputSolar, {rdoPenmanMonteith}, bNewLinkedAddRemoveParameter:=True, bNewLinkedHideIfParameterMissing:=True, bNewLinkedChangeToDefaultState:=True, objNewDefaultState:=Chr(34) & "sunshine hours" & Chr(34))
         UcrPnlMethod.AddToLinkedControls(UcrChkWind, {rdoPenmanMonteith}, bNewLinkedAddRemoveParameter:=True, bNewLinkedHideIfParameterMissing:=True, bNewLinkedChangeToDefaultState:=True, objNewDefaultState:=True)
         UcrPnlMethod.AddToLinkedControls(UcrReceiverHumidityMax, {rdoPenmanMonteith}, bNewLinkedAddRemoveParameter:=True, bNewLinkedHideIfParameterMissing:=True, bNewLinkedChangeToDefaultState:=True)
         UcrPnlMethod.AddToLinkedControls(UcrReceiverHumidityMin, {rdoPenmanMonteith}, bNewLinkedAddRemoveParameter:=True, bNewLinkedHideIfParameterMissing:=True, bNewLinkedChangeToDefaultState:=True)
-        'UcrPnlMethod.AddToLinkedControls(UcrReceiverRadiation, {rdoPenmanMonteith}, bNewLinkedAddRemoveParameter:=True, bNewLinkedHideIfParameterMissing:=True, bNewLinkedChangeToDefaultState:=True)
         UcrPnlMethod.AddToLinkedControls(UcrReceiverWindSpeed, {rdoPenmanMonteith}, bNewLinkedAddRemoveParameter:=True, bNewLinkedHideIfParameterMissing:=True, bNewLinkedChangeToDefaultState:=True)
         UcrPnlMethod.AddToLinkedControls(UcrInputTimeStep, {rdoPenmanMonteith, rdoHargreavesSamani}, bNewLinkedAddRemoveParameter:=True, bNewLinkedHideIfParameterMissing:=True, bNewLinkedChangeToDefaultState:=True, objNewDefaultState:=Chr(34) & "daily" & Chr(34))
         UcrPnlMethod.AddToLinkedControls(ucrPnlSolar, {rdoPenmanMonteith}, bNewLinkedAddRemoveParameter:=True, bNewLinkedHideIfParameterMissing:=True)
@@ -203,6 +201,9 @@ Public Class dlgEvapotranspiration
         ucrNewColName.Reset()
         ucrReceiverDate.SetMeAsReceiver()
         ucrInputComboBoxMissingMethod.SetName("NULL")
+        UcrInputTimeStep.SetName("daily")
+        UcrInputSolar.SetName("sunshine hours")
+        UcrInputCrop.SetName("short")
         ucrNewColName.SetLabelText("New Column Name:")
 
         clsDataFunctionPM.SetRCommand("data.frame")
