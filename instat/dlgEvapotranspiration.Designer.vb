@@ -35,17 +35,25 @@ Partial Class dlgEvapotranspiration
         Me.lblDate = New System.Windows.Forms.Label()
         Me.grpMissingDataOpts = New System.Windows.Forms.GroupBox()
         Me.lblMissingMethod = New System.Windows.Forms.Label()
-        Me.ucrInputComboBoxMissingMethod = New instat.ucrInputComboBox()
         Me.lblMaxPerctMissingDays = New System.Windows.Forms.Label()
         Me.lblMaxPerctDurationMissingData = New System.Windows.Forms.Label()
         Me.lblMaxPerctMissindData = New System.Windows.Forms.Label()
+        Me.grpSolar = New System.Windows.Forms.GroupBox()
+        Me.lblCloudCover = New System.Windows.Forms.Label()
+        Me.lblSunshineHrs = New System.Windows.Forms.Label()
+        Me.lblSolar = New System.Windows.Forms.Label()
+        Me.lblRadiation = New System.Windows.Forms.Label()
+        Me.UcrInputSolar = New instat.ucrInputComboBox()
+        Me.UcrReceiverRadiation = New instat.ucrReceiverSingle()
+        Me.ucrPnlSolar = New instat.UcrPanel()
+        Me.UcrInputCrop = New instat.ucrInputComboBox()
+        Me.ucrNewColName = New instat.ucrSave()
+        Me.ucrInputComboBoxMissingMethod = New instat.ucrInputComboBox()
         Me.ucrChkInterpMissingEntries = New instat.ucrCheck()
         Me.ucrChkInterpMissingDays = New instat.ucrCheck()
         Me.ucrNudMaxMissingDays = New instat.ucrNud()
         Me.ucrNudMaxDurationMissingData = New instat.ucrNud()
         Me.ucrNudMaxMissingData = New instat.ucrNud()
-        Me.UcrInputCrop = New instat.ucrInputComboBox()
-        Me.ucrNewColName = New instat.ucrSave()
         Me.ucrReceiverDate = New instat.ucrReceiverSingle()
         Me.UcrChkWind = New instat.ucrCheck()
         Me.UcrPnlMethod = New instat.UcrPanel()
@@ -58,14 +66,6 @@ Partial Class dlgEvapotranspiration
         Me.ucrReceiverTmax = New instat.ucrReceiverSingle()
         Me.ucrSelectorEvaop = New instat.ucrSelectorByDataFrameAddRemove()
         Me.ucrBase = New instat.ucrButtons()
-        Me.ucrPnlSolar = New instat.UcrPanel()
-        Me.grpSolar = New System.Windows.Forms.GroupBox()
-        Me.lblCloudCover = New System.Windows.Forms.Label()
-        Me.lblSunshineHrs = New System.Windows.Forms.Label()
-        Me.UcrInputSolar = New instat.ucrInputComboBox()
-        Me.lblSolar = New System.Windows.Forms.Label()
-        Me.UcrReceiverRadiation = New instat.ucrReceiverSingle()
-        Me.lblRadiation = New System.Windows.Forms.Label()
         Me.grpMissingDataOpts.SuspendLayout()
         Me.grpSolar.SuspendLayout()
         Me.SuspendLayout()
@@ -151,13 +151,6 @@ Partial Class dlgEvapotranspiration
         resources.ApplyResources(Me.lblMissingMethod, "lblMissingMethod")
         Me.lblMissingMethod.Name = "lblMissingMethod"
         '
-        'ucrInputComboBoxMissingMethod
-        '
-        Me.ucrInputComboBoxMissingMethod.AddQuotesIfUnrecognised = True
-        Me.ucrInputComboBoxMissingMethod.IsReadOnly = False
-        resources.ApplyResources(Me.ucrInputComboBoxMissingMethod, "ucrInputComboBoxMissingMethod")
-        Me.ucrInputComboBoxMissingMethod.Name = "ucrInputComboBoxMissingMethod"
-        '
         'lblMaxPerctMissingDays
         '
         resources.ApplyResources(Me.lblMaxPerctMissingDays, "lblMaxPerctMissingDays")
@@ -172,6 +165,78 @@ Partial Class dlgEvapotranspiration
         '
         resources.ApplyResources(Me.lblMaxPerctMissindData, "lblMaxPerctMissindData")
         Me.lblMaxPerctMissindData.Name = "lblMaxPerctMissindData"
+        '
+        'grpSolar
+        '
+        Me.grpSolar.Controls.Add(Me.lblCloudCover)
+        Me.grpSolar.Controls.Add(Me.lblSunshineHrs)
+        Me.grpSolar.Controls.Add(Me.UcrInputSolar)
+        Me.grpSolar.Controls.Add(Me.lblSolar)
+        Me.grpSolar.Controls.Add(Me.UcrReceiverRadiation)
+        Me.grpSolar.Controls.Add(Me.lblRadiation)
+        resources.ApplyResources(Me.grpSolar, "grpSolar")
+        Me.grpSolar.Name = "grpSolar"
+        Me.grpSolar.TabStop = False
+        '
+        'lblCloudCover
+        '
+        resources.ApplyResources(Me.lblCloudCover, "lblCloudCover")
+        Me.lblCloudCover.Name = "lblCloudCover"
+        '
+        'lblSunshineHrs
+        '
+        resources.ApplyResources(Me.lblSunshineHrs, "lblSunshineHrs")
+        Me.lblSunshineHrs.Name = "lblSunshineHrs"
+        '
+        'lblSolar
+        '
+        resources.ApplyResources(Me.lblSolar, "lblSolar")
+        Me.lblSolar.Name = "lblSolar"
+        '
+        'lblRadiation
+        '
+        resources.ApplyResources(Me.lblRadiation, "lblRadiation")
+        Me.lblRadiation.Name = "lblRadiation"
+        '
+        'UcrInputSolar
+        '
+        Me.UcrInputSolar.AddQuotesIfUnrecognised = True
+        Me.UcrInputSolar.IsReadOnly = False
+        resources.ApplyResources(Me.UcrInputSolar, "UcrInputSolar")
+        Me.UcrInputSolar.Name = "UcrInputSolar"
+        '
+        'UcrReceiverRadiation
+        '
+        Me.UcrReceiverRadiation.frmParent = Nothing
+        resources.ApplyResources(Me.UcrReceiverRadiation, "UcrReceiverRadiation")
+        Me.UcrReceiverRadiation.Name = "UcrReceiverRadiation"
+        Me.UcrReceiverRadiation.Selector = Nothing
+        Me.UcrReceiverRadiation.strNcFilePath = ""
+        Me.UcrReceiverRadiation.ucrSelector = Nothing
+        '
+        'ucrPnlSolar
+        '
+        resources.ApplyResources(Me.ucrPnlSolar, "ucrPnlSolar")
+        Me.ucrPnlSolar.Name = "ucrPnlSolar"
+        '
+        'UcrInputCrop
+        '
+        Me.UcrInputCrop.AddQuotesIfUnrecognised = True
+        Me.UcrInputCrop.IsReadOnly = False
+        resources.ApplyResources(Me.UcrInputCrop, "UcrInputCrop")
+        Me.UcrInputCrop.Name = "UcrInputCrop"
+        '
+        'ucrNewColName
+        '
+        resources.ApplyResources(Me.ucrNewColName, "ucrNewColName")
+        Me.ucrNewColName.Name = "ucrNewColName"
+        '
+        'ucrInputComboBoxMissingMethod
+        '
+        Me.ucrInputComboBoxMissingMethod.AddQuotesIfUnrecognised = True
+        Me.ucrInputComboBoxMissingMethod.IsReadOnly = False
+        resources.ApplyResources(Me.ucrInputComboBoxMissingMethod, "ucrInputComboBoxMissingMethod")
+        Me.ucrInputComboBoxMissingMethod.Name = "ucrInputComboBoxMissingMethod"
         '
         'ucrChkInterpMissingEntries
         '
@@ -214,18 +279,6 @@ Partial Class dlgEvapotranspiration
         Me.ucrNudMaxMissingData.Minimum = New Decimal(New Integer() {0, 0, 0, 0})
         Me.ucrNudMaxMissingData.Name = "ucrNudMaxMissingData"
         Me.ucrNudMaxMissingData.Value = New Decimal(New Integer() {0, 0, 0, 0})
-        '
-        'UcrInputCrop
-        '
-        Me.UcrInputCrop.AddQuotesIfUnrecognised = True
-        Me.UcrInputCrop.IsReadOnly = False
-        resources.ApplyResources(Me.UcrInputCrop, "UcrInputCrop")
-        Me.UcrInputCrop.Name = "UcrInputCrop"
-        '
-        'ucrNewColName
-        '
-        resources.ApplyResources(Me.ucrNewColName, "ucrNewColName")
-        Me.ucrNewColName.Name = "ucrNewColName"
         '
         'ucrReceiverDate
         '
@@ -316,59 +369,6 @@ Partial Class dlgEvapotranspiration
         '
         resources.ApplyResources(Me.ucrBase, "ucrBase")
         Me.ucrBase.Name = "ucrBase"
-        '
-        'ucrPnlSolar
-        '
-        resources.ApplyResources(Me.ucrPnlSolar, "ucrPnlSolar")
-        Me.ucrPnlSolar.Name = "ucrPnlSolar"
-        '
-        'grpSolar
-        '
-        Me.grpSolar.Controls.Add(Me.lblCloudCover)
-        Me.grpSolar.Controls.Add(Me.lblSunshineHrs)
-        Me.grpSolar.Controls.Add(Me.UcrInputSolar)
-        Me.grpSolar.Controls.Add(Me.lblSolar)
-        Me.grpSolar.Controls.Add(Me.UcrReceiverRadiation)
-        Me.grpSolar.Controls.Add(Me.lblRadiation)
-        resources.ApplyResources(Me.grpSolar, "grpSolar")
-        Me.grpSolar.Name = "grpSolar"
-        Me.grpSolar.TabStop = False
-        '
-        'lblCloudCover
-        '
-        resources.ApplyResources(Me.lblCloudCover, "lblCloudCover")
-        Me.lblCloudCover.Name = "lblCloudCover"
-        '
-        'lblSunshineHrs
-        '
-        resources.ApplyResources(Me.lblSunshineHrs, "lblSunshineHrs")
-        Me.lblSunshineHrs.Name = "lblSunshineHrs"
-        '
-        'UcrInputSolar
-        '
-        Me.UcrInputSolar.AddQuotesIfUnrecognised = True
-        Me.UcrInputSolar.IsReadOnly = False
-        resources.ApplyResources(Me.UcrInputSolar, "UcrInputSolar")
-        Me.UcrInputSolar.Name = "UcrInputSolar"
-        '
-        'lblSolar
-        '
-        resources.ApplyResources(Me.lblSolar, "lblSolar")
-        Me.lblSolar.Name = "lblSolar"
-        '
-        'UcrReceiverRadiation
-        '
-        Me.UcrReceiverRadiation.frmParent = Me
-        resources.ApplyResources(Me.UcrReceiverRadiation, "UcrReceiverRadiation")
-        Me.UcrReceiverRadiation.Name = "UcrReceiverRadiation"
-        Me.UcrReceiverRadiation.Selector = Nothing
-        Me.UcrReceiverRadiation.strNcFilePath = ""
-        Me.UcrReceiverRadiation.ucrSelector = Nothing
-        '
-        'lblRadiation
-        '
-        resources.ApplyResources(Me.lblRadiation, "lblRadiation")
-        Me.lblRadiation.Name = "lblRadiation"
         '
         'dlgEvapotranspiration
         '

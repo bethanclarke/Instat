@@ -55,9 +55,9 @@ Public Class dlgEvapotranspiration
         UcrReceiverTmin.SetLinkedDisplayControl(lblTmin)
         UcrReceiverHumidityMax.SetLinkedDisplayControl(lblHumidityMax)
         UcrReceiverHumidityMin.SetLinkedDisplayControl(lblHumidityMin)
-        UcrReceiverRadiation.SetLinkedDisplayControl(lblSunshineHrs)
         UcrReceiverWindSpeed.SetLinkedDisplayControl(lblWindSpeed)
         UcrInputSolar.SetLinkedDisplayControl(lblSolar)
+        ucrInputComboBoxMissingMethod.SetLinkedDisplayControl(lblMissingMethod)
 
         ucrReceiverDate.Selector = ucrSelectorEvaop
         ucrReceiverDate.SetParameter(New RParameter("x", 0))
@@ -156,15 +156,20 @@ Public Class dlgEvapotranspiration
         ucrInputComboBoxMissingMethod.SetItems(dctInputMissingMethod)
 
         ucrNudMaxMissingData.SetParameter(New RParameter("x", bNewIncludeArgumentName:=False))
+        ucrNudMaxMissingData.SetMinMax(1, 99)
+
         ucrNudMaxMissingDays.SetParameter(New RParameter("y", bNewIncludeArgumentName:=False))
+        ucrNudMaxMissingDays.SetMinMax(1, 99)
+
         ucrNudMaxDurationMissingData.SetParameter(New RParameter("z", bNewIncludeArgumentName:=False))
+        ucrNudMaxDurationMissingData.SetMinMax(1, 99)
 
         'ucrSave Date Column
         ucrNewColName.SetPrefix("Evapotranspiration")
+        ucrNewColName.SetLabelText("New Column Name:")
         ucrNewColName.SetDataFrameSelector(ucrSelectorEvaop.ucrAvailableDataFrames)
         ucrNewColName.SetIsComboBox()
         ucrNewColName.SetSaveTypeAsColumn()
-        ucrNewColName.SetLabelText("New Column Name:")
         ucrNewColName.SetAssignToBooleans(bTempAssignToIsPrefix:=True)
 
         'panel setting
@@ -183,6 +188,9 @@ Public Class dlgEvapotranspiration
         ucrPnlSolar.AddToLinkedControls(UcrReceiverRadiation, {rdoPenmanMonteith}, bNewLinkedAddRemoveParameter:=True, bNewLinkedHideIfParameterMissing:=True, bNewLinkedChangeToDefaultState:=True)
         ucrPnlSolar.AddToLinkedControls(UcrInputSolar, {rdoPenmanMonteith}, bNewLinkedAddRemoveParameter:=True, bNewLinkedHideIfParameterMissing:=True, bNewLinkedChangeToDefaultState:=True, objNewDefaultState:=Chr(34) & "sunshine hours" & Chr(34))
         ucrPnlSolar.SetLinkedDisplayControl(grpSolar)
+
+        'ucrChkInterpMissingDays.AddToLinkedControls(ucrInputComboBoxMissingMethod, {True}, bNewLinkedAddRemoveParameter:=True, bNewLinkedHideIfParameterMissing:=True, bNewLinkedChangeToDefaultState:=True)
+
     End Sub
 
     Private Sub SetDefaults()
@@ -198,13 +206,16 @@ Public Class dlgEvapotranspiration
         clsYearFunc = New RFunction
 
         ucrSelectorEvaop.Reset()
-        ucrNewColName.Reset()
         ucrReceiverDate.SetMeAsReceiver()
+
         ucrInputComboBoxMissingMethod.SetName("NULL")
         UcrInputTimeStep.SetName("daily")
         UcrInputSolar.SetName("sunshine hours")
         UcrInputCrop.SetName("short")
-        ucrNewColName.SetLabelText("New Column Name:")
+
+        ucrNewColName.Reset()
+
+        ChkInterpMissingData()
 
         clsDataFunctionPM.SetRCommand("data.frame")
         clsDataFunctionHS.SetRCommand("data.frame")
@@ -320,13 +331,13 @@ Public Class dlgEvapotranspiration
 
     Private Sub TestOKEnabled()
         If rdoPenmanMonteith.Checked Then
-            If ucrNewColName.IsComplete AndAlso Not ucrReceiverDate.IsEmpty() AndAlso Not ucrReceiverTmax.IsEmpty() AndAlso Not UcrReceiverTmin.IsEmpty() AndAlso Not UcrReceiverHumidityMax.IsEmpty() AndAlso Not UcrReceiverHumidityMin.IsEmpty() AndAlso Not UcrReceiverRadiation.IsEmpty() AndAlso Not UcrReceiverWindSpeed.IsEmpty() AndAlso Not UcrInputTimeStep.IsEmpty AndAlso Not UcrInputSolar.IsEmpty AndAlso Not UcrInputCrop.IsEmpty Then
+            If ucrNewColName.IsComplete AndAlso Not ucrReceiverDate.IsEmpty() AndAlso Not ucrReceiverTmax.IsEmpty() AndAlso Not UcrReceiverTmin.IsEmpty() AndAlso Not UcrReceiverHumidityMax.IsEmpty() AndAlso Not UcrReceiverHumidityMin.IsEmpty() AndAlso Not UcrReceiverRadiation.IsEmpty() AndAlso Not UcrReceiverWindSpeed.IsEmpty() AndAlso Not UcrInputTimeStep.IsEmpty AndAlso Not UcrInputSolar.IsEmpty AndAlso Not UcrInputCrop.IsEmpty AndAlso ucrNudMaxMissingData.GetText <> "" AndAlso ucrNudMaxMissingDays.GetText <> "" AndAlso ucrNudMaxDurationMissingData.GetText <> "" Then
                 ucrBase.OKEnabled(True)
             Else
                 ucrBase.OKEnabled(False)
             End If
         ElseIf rdoHargreavesSamani.Checked Then
-            If ucrNewColName.IsComplete AndAlso Not ucrReceiverDate.IsEmpty() AndAlso Not ucrReceiverTmax.IsEmpty() AndAlso Not UcrReceiverTmin.IsEmpty() AndAlso Not UcrInputTimeStep.IsEmpty() Then
+            If ucrNewColName.IsComplete AndAlso Not ucrReceiverDate.IsEmpty() AndAlso Not ucrReceiverTmax.IsEmpty() AndAlso Not UcrReceiverTmin.IsEmpty() AndAlso Not UcrInputTimeStep.IsEmpty() AndAlso ucrNudMaxMissingData.GetText <> "" AndAlso ucrNudMaxMissingDays.GetText <> "" AndAlso ucrNudMaxDurationMissingData.GetText <> "" Then
                 ucrBase.OKEnabled(True)
             Else
                 ucrBase.OKEnabled(False)
@@ -368,7 +379,7 @@ Public Class dlgEvapotranspiration
         TestOKEnabled()
     End Sub
 
-    Private Sub ucrNudMaxMissingData_ControlContentsChanged(ucrChangedControl As ucrCore) Handles ucrNudMaxMissingData.ControlContentsChanged, ucrNudMaxDurationMissingData.ControlContentsChanged, ucrNudMaxMissingDays.ControlContentsChanged
+    Private Sub ucrNudMaxMissingData_ControlValueChanged(ucrChangedControl As ucrCore) Handles ucrNudMaxMissingData.ControlValueChanged, ucrNudMaxDurationMissingData.ControlValueChanged, ucrNudMaxMissingDays.ControlValueChanged
         TestOKEnabled()
     End Sub
 
@@ -436,6 +447,18 @@ Public Class dlgEvapotranspiration
                 clsVarnamesVectorPM.RemoveParameterByName("n")
                 clsVarnamesVectorPM.RemoveParameterByName("Rs")
         End Select
+    End Sub
+
+    Private Sub ChkInterpMissingData()
+        If ucrChkInterpMissingDays.Checked AndAlso ucrChkInterpMissingEntries.Checked Then
+            ucrInputComboBoxMissingMethod.Visible = True
+        Else
+            ucrInputComboBoxMissingMethod.Visible = False
+        End If
+    End Sub
+
+    Private Sub ucrChkInterpMissingDays_ControlContentsChanged(ucrChangedControl As ucrCore) Handles ucrChkInterpMissingDays.ControlContentsChanged, ucrChkInterpMissingEntries.ControlContentsChanged
+        ChkInterpMissingData()
     End Sub
 End Class
 

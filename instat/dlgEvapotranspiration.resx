@@ -432,150 +432,6 @@
   <data name="&gt;&gt;lblDate.ZOrder" xml:space="preserve">
     <value>5</value>
   </data>
-  <data name="&gt;&gt;lblMissingMethod.Name" xml:space="preserve">
-    <value>lblMissingMethod</value>
-  </data>
-  <data name="&gt;&gt;lblMissingMethod.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;lblMissingMethod.Parent" xml:space="preserve">
-    <value>grpMissingDataOpts</value>
-  </data>
-  <data name="&gt;&gt;lblMissingMethod.ZOrder" xml:space="preserve">
-    <value>0</value>
-  </data>
-  <data name="&gt;&gt;ucrInputComboBoxMissingMethod.Name" xml:space="preserve">
-    <value>ucrInputComboBoxMissingMethod</value>
-  </data>
-  <data name="&gt;&gt;ucrInputComboBoxMissingMethod.Type" xml:space="preserve">
-    <value>instat.ucrInputComboBox, instat, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</value>
-  </data>
-  <data name="&gt;&gt;ucrInputComboBoxMissingMethod.Parent" xml:space="preserve">
-    <value>grpMissingDataOpts</value>
-  </data>
-  <data name="&gt;&gt;ucrInputComboBoxMissingMethod.ZOrder" xml:space="preserve">
-    <value>1</value>
-  </data>
-  <data name="&gt;&gt;lblMaxPerctMissingDays.Name" xml:space="preserve">
-    <value>lblMaxPerctMissingDays</value>
-  </data>
-  <data name="&gt;&gt;lblMaxPerctMissingDays.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;lblMaxPerctMissingDays.Parent" xml:space="preserve">
-    <value>grpMissingDataOpts</value>
-  </data>
-  <data name="&gt;&gt;lblMaxPerctMissingDays.ZOrder" xml:space="preserve">
-    <value>2</value>
-  </data>
-  <data name="&gt;&gt;lblMaxPerctDurationMissingData.Name" xml:space="preserve">
-    <value>lblMaxPerctDurationMissingData</value>
-  </data>
-  <data name="&gt;&gt;lblMaxPerctDurationMissingData.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;lblMaxPerctDurationMissingData.Parent" xml:space="preserve">
-    <value>grpMissingDataOpts</value>
-  </data>
-  <data name="&gt;&gt;lblMaxPerctDurationMissingData.ZOrder" xml:space="preserve">
-    <value>3</value>
-  </data>
-  <data name="&gt;&gt;lblMaxPerctMissindData.Name" xml:space="preserve">
-    <value>lblMaxPerctMissindData</value>
-  </data>
-  <data name="&gt;&gt;lblMaxPerctMissindData.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;lblMaxPerctMissindData.Parent" xml:space="preserve">
-    <value>grpMissingDataOpts</value>
-  </data>
-  <data name="&gt;&gt;lblMaxPerctMissindData.ZOrder" xml:space="preserve">
-    <value>4</value>
-  </data>
-  <data name="&gt;&gt;ucrChkInterpMissingEntries.Name" xml:space="preserve">
-    <value>ucrChkInterpMissingEntries</value>
-  </data>
-  <data name="&gt;&gt;ucrChkInterpMissingEntries.Type" xml:space="preserve">
-    <value>instat.ucrCheck, instat, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</value>
-  </data>
-  <data name="&gt;&gt;ucrChkInterpMissingEntries.Parent" xml:space="preserve">
-    <value>grpMissingDataOpts</value>
-  </data>
-  <data name="&gt;&gt;ucrChkInterpMissingEntries.ZOrder" xml:space="preserve">
-    <value>5</value>
-  </data>
-  <data name="&gt;&gt;ucrChkInterpMissingDays.Name" xml:space="preserve">
-    <value>ucrChkInterpMissingDays</value>
-  </data>
-  <data name="&gt;&gt;ucrChkInterpMissingDays.Type" xml:space="preserve">
-    <value>instat.ucrCheck, instat, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</value>
-  </data>
-  <data name="&gt;&gt;ucrChkInterpMissingDays.Parent" xml:space="preserve">
-    <value>grpMissingDataOpts</value>
-  </data>
-  <data name="&gt;&gt;ucrChkInterpMissingDays.ZOrder" xml:space="preserve">
-    <value>6</value>
-  </data>
-  <data name="&gt;&gt;ucrNudMaxMissingDays.Name" xml:space="preserve">
-    <value>ucrNudMaxMissingDays</value>
-  </data>
-  <data name="&gt;&gt;ucrNudMaxMissingDays.Type" xml:space="preserve">
-    <value>instat.ucrNud, instat, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</value>
-  </data>
-  <data name="&gt;&gt;ucrNudMaxMissingDays.Parent" xml:space="preserve">
-    <value>grpMissingDataOpts</value>
-  </data>
-  <data name="&gt;&gt;ucrNudMaxMissingDays.ZOrder" xml:space="preserve">
-    <value>7</value>
-  </data>
-  <data name="&gt;&gt;ucrNudMaxDurationMissingData.Name" xml:space="preserve">
-    <value>ucrNudMaxDurationMissingData</value>
-  </data>
-  <data name="&gt;&gt;ucrNudMaxDurationMissingData.Type" xml:space="preserve">
-    <value>instat.ucrNud, instat, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</value>
-  </data>
-  <data name="&gt;&gt;ucrNudMaxDurationMissingData.Parent" xml:space="preserve">
-    <value>grpMissingDataOpts</value>
-  </data>
-  <data name="&gt;&gt;ucrNudMaxDurationMissingData.ZOrder" xml:space="preserve">
-    <value>8</value>
-  </data>
-  <data name="&gt;&gt;ucrNudMaxMissingData.Name" xml:space="preserve">
-    <value>ucrNudMaxMissingData</value>
-  </data>
-  <data name="&gt;&gt;ucrNudMaxMissingData.Type" xml:space="preserve">
-    <value>instat.ucrNud, instat, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</value>
-  </data>
-  <data name="&gt;&gt;ucrNudMaxMissingData.Parent" xml:space="preserve">
-    <value>grpMissingDataOpts</value>
-  </data>
-  <data name="&gt;&gt;ucrNudMaxMissingData.ZOrder" xml:space="preserve">
-    <value>9</value>
-  </data>
-  <data name="grpMissingDataOpts.Location" type="System.Drawing.Point, System.Drawing">
-    <value>10, 278</value>
-  </data>
-  <data name="grpMissingDataOpts.Size" type="System.Drawing.Size, System.Drawing">
-    <value>501, 144</value>
-  </data>
-  <data name="grpMissingDataOpts.TabIndex" type="System.Int32, mscorlib">
-    <value>41</value>
-  </data>
-  <data name="grpMissingDataOpts.Text" xml:space="preserve">
-    <value>Missing Data Options</value>
-  </data>
-  <data name="&gt;&gt;grpMissingDataOpts.Name" xml:space="preserve">
-    <value>grpMissingDataOpts</value>
-  </data>
-  <data name="&gt;&gt;grpMissingDataOpts.Type" xml:space="preserve">
-    <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;grpMissingDataOpts.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="&gt;&gt;grpMissingDataOpts.ZOrder" xml:space="preserve">
-    <value>4</value>
-  </data>
   <data name="lblMissingMethod.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
@@ -610,7 +466,7 @@
     <value>96, 110</value>
   </data>
   <data name="ucrInputComboBoxMissingMethod.Size" type="System.Drawing.Size, System.Drawing">
-    <value>93, 21</value>
+    <value>114, 21</value>
   </data>
   <data name="ucrInputComboBoxMissingMethod.TabIndex" type="System.Int32, mscorlib">
     <value>20</value>
@@ -822,56 +678,29 @@
   <data name="&gt;&gt;ucrNudMaxMissingData.ZOrder" xml:space="preserve">
     <value>9</value>
   </data>
-  <data name="UcrInputCrop.Location" type="System.Drawing.Point, System.Drawing">
-    <value>287, 243</value>
+  <data name="grpMissingDataOpts.Location" type="System.Drawing.Point, System.Drawing">
+    <value>10, 278</value>
   </data>
-  <data name="UcrInputCrop.Size" type="System.Drawing.Size, System.Drawing">
-    <value>80, 21</value>
+  <data name="grpMissingDataOpts.Size" type="System.Drawing.Size, System.Drawing">
+    <value>501, 144</value>
   </data>
-  <data name="UcrInputCrop.TabIndex" type="System.Int32, mscorlib">
-    <value>25</value>
+  <data name="grpMissingDataOpts.TabIndex" type="System.Int32, mscorlib">
+    <value>41</value>
   </data>
-  <data name="&gt;&gt;UcrInputCrop.Name" xml:space="preserve">
-    <value>UcrInputCrop</value>
+  <data name="grpMissingDataOpts.Text" xml:space="preserve">
+    <value>Missing Data Options</value>
   </data>
-  <data name="&gt;&gt;UcrInputCrop.Type" xml:space="preserve">
-    <value>instat.ucrInputComboBox, instat, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</value>
+  <data name="&gt;&gt;grpMissingDataOpts.Name" xml:space="preserve">
+    <value>grpMissingDataOpts</value>
   </data>
-  <data name="&gt;&gt;UcrInputCrop.Parent" xml:space="preserve">
+  <data name="&gt;&gt;grpMissingDataOpts.Type" xml:space="preserve">
+    <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;grpMissingDataOpts.Parent" xml:space="preserve">
     <value>$this</value>
   </data>
-  <data name="&gt;&gt;UcrInputCrop.ZOrder" xml:space="preserve">
-    <value>2</value>
-  </data>
-  <data name="ucrNewColName.Location" type="System.Drawing.Point, System.Drawing">
-    <value>10, 463</value>
-  </data>
-  <data name="ucrNewColName.Size" type="System.Drawing.Size, System.Drawing">
-    <value>340, 24</value>
-  </data>
-  <data name="ucrNewColName.TabIndex" type="System.Int32, mscorlib">
-    <value>42</value>
-  </data>
-  <data name="&gt;&gt;ucrNewColName.Name" xml:space="preserve">
-    <value>ucrNewColName</value>
-  </data>
-  <data name="&gt;&gt;ucrNewColName.Type" xml:space="preserve">
-    <value>instat.ucrSave, instat, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</value>
-  </data>
-  <data name="&gt;&gt;ucrNewColName.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="&gt;&gt;ucrNewColName.ZOrder" xml:space="preserve">
-    <value>3</value>
-  </data>
-  <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </metadata>
-  <data name="$this.AutoScaleDimensions" type="System.Drawing.SizeF, System.Drawing">
-    <value>6, 13</value>
-  </data>
-  <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
-    <value>544, 545</value>
+  <data name="&gt;&gt;grpMissingDataOpts.ZOrder" xml:space="preserve">
+    <value>4</value>
   </data>
   <data name="lblCloudCover.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -1079,6 +908,57 @@
   </data>
   <data name="&gt;&gt;ucrPnlSolar.ZOrder" xml:space="preserve">
     <value>1</value>
+  </data>
+  <data name="UcrInputCrop.Location" type="System.Drawing.Point, System.Drawing">
+    <value>287, 243</value>
+  </data>
+  <data name="UcrInputCrop.Size" type="System.Drawing.Size, System.Drawing">
+    <value>80, 21</value>
+  </data>
+  <data name="UcrInputCrop.TabIndex" type="System.Int32, mscorlib">
+    <value>25</value>
+  </data>
+  <data name="&gt;&gt;UcrInputCrop.Name" xml:space="preserve">
+    <value>UcrInputCrop</value>
+  </data>
+  <data name="&gt;&gt;UcrInputCrop.Type" xml:space="preserve">
+    <value>instat.ucrInputComboBox, instat, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</value>
+  </data>
+  <data name="&gt;&gt;UcrInputCrop.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;UcrInputCrop.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="ucrNewColName.Location" type="System.Drawing.Point, System.Drawing">
+    <value>10, 463</value>
+  </data>
+  <data name="ucrNewColName.Size" type="System.Drawing.Size, System.Drawing">
+    <value>340, 24</value>
+  </data>
+  <data name="ucrNewColName.TabIndex" type="System.Int32, mscorlib">
+    <value>42</value>
+  </data>
+  <data name="&gt;&gt;ucrNewColName.Name" xml:space="preserve">
+    <value>ucrNewColName</value>
+  </data>
+  <data name="&gt;&gt;ucrNewColName.Type" xml:space="preserve">
+    <value>instat.ucrSave, instat, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</value>
+  </data>
+  <data name="&gt;&gt;ucrNewColName.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;ucrNewColName.ZOrder" xml:space="preserve">
+    <value>3</value>
+  </data>
+  <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <data name="$this.AutoScaleDimensions" type="System.Drawing.SizeF, System.Drawing">
+    <value>6, 13</value>
+  </data>
+  <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
+    <value>544, 545</value>
   </data>
   <data name="UcrChkWind.Location" type="System.Drawing.Point, System.Drawing">
     <value>403, 245</value>
