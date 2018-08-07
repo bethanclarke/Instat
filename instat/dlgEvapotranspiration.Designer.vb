@@ -27,7 +27,6 @@ Partial Class dlgEvapotranspiration
         Me.lblTmin = New System.Windows.Forms.Label()
         Me.lblHumidityMax = New System.Windows.Forms.Label()
         Me.lblHumidityMin = New System.Windows.Forms.Label()
-        Me.lblWindSpeed = New System.Windows.Forms.Label()
         Me.lblTimeStep = New System.Windows.Forms.Label()
         Me.lblCrop = New System.Windows.Forms.Label()
         Me.rdoPenmanMonteith = New System.Windows.Forms.RadioButton()
@@ -35,39 +34,42 @@ Partial Class dlgEvapotranspiration
         Me.lblDate = New System.Windows.Forms.Label()
         Me.grpMissingDataOpts = New System.Windows.Forms.GroupBox()
         Me.lblMissingMethod = New System.Windows.Forms.Label()
+        Me.ucrInputComboBoxMissingMethod = New instat.ucrInputComboBox()
         Me.lblMaxPerctMissingDays = New System.Windows.Forms.Label()
         Me.lblMaxPerctDurationMissingData = New System.Windows.Forms.Label()
         Me.lblMaxPerctMissindData = New System.Windows.Forms.Label()
-        Me.grpSolar = New System.Windows.Forms.GroupBox()
-        Me.lblCloudCover = New System.Windows.Forms.Label()
-        Me.lblSunshineHrs = New System.Windows.Forms.Label()
-        Me.lblSolar = New System.Windows.Forms.Label()
-        Me.lblRadiation = New System.Windows.Forms.Label()
-        Me.UcrInputSolar = New instat.ucrInputComboBox()
-        Me.UcrReceiverRadiation = New instat.ucrReceiverSingle()
-        Me.ucrPnlSolar = New instat.UcrPanel()
-        Me.UcrInputCrop = New instat.ucrInputComboBox()
-        Me.ucrNewColName = New instat.ucrSave()
-        Me.ucrInputComboBoxMissingMethod = New instat.ucrInputComboBox()
         Me.ucrChkInterpMissingEntries = New instat.ucrCheck()
         Me.ucrChkInterpMissingDays = New instat.ucrCheck()
         Me.ucrNudMaxMissingDays = New instat.ucrNud()
         Me.ucrNudMaxDurationMissingData = New instat.ucrNud()
         Me.ucrNudMaxMissingData = New instat.ucrNud()
+        Me.ucrPnlSolar = New instat.UcrPanel()
+        Me.UcrInputCrop = New instat.ucrInputComboBox()
+        Me.ucrNewColName = New instat.ucrSave()
         Me.ucrReceiverDate = New instat.ucrReceiverSingle()
-        Me.UcrChkWind = New instat.ucrCheck()
         Me.UcrPnlMethod = New instat.UcrPanel()
-        Me.UcrChkSaveCSV = New instat.ucrCheck()
         Me.UcrInputTimeStep = New instat.ucrInputComboBox()
-        Me.UcrReceiverWindSpeed = New instat.ucrReceiverSingle()
         Me.UcrReceiverHumidityMin = New instat.ucrReceiverSingle()
         Me.UcrReceiverHumidityMax = New instat.ucrReceiverSingle()
         Me.UcrReceiverTmin = New instat.ucrReceiverSingle()
         Me.ucrReceiverTmax = New instat.ucrReceiverSingle()
         Me.ucrSelectorEvaop = New instat.ucrSelectorByDataFrameAddRemove()
         Me.ucrBase = New instat.ucrButtons()
+        Me.ucrPnlWindSpeed = New instat.UcrPanel()
+        Me.grpSolar = New System.Windows.Forms.GroupBox()
+        Me.lblCloudCover = New System.Windows.Forms.Label()
+        Me.lblSunshineHrs = New System.Windows.Forms.Label()
+        Me.UcrInputSolar = New instat.ucrInputComboBox()
+        Me.lblSolar = New System.Windows.Forms.Label()
+        Me.UcrReceiverRadiation = New instat.ucrReceiverSingle()
+        Me.lblRadiation = New System.Windows.Forms.Label()
+        Me.grpWindSpeed = New System.Windows.Forms.GroupBox()
+        Me.UcrChkWind = New instat.ucrCheck()
+        Me.lblWindSpeed = New System.Windows.Forms.Label()
+        Me.UcrReceiverWindSpeed = New instat.ucrReceiverSingle()
         Me.grpMissingDataOpts.SuspendLayout()
         Me.grpSolar.SuspendLayout()
+        Me.grpWindSpeed.SuspendLayout()
         Me.SuspendLayout()
         '
         'lblTmax
@@ -89,11 +91,6 @@ Partial Class dlgEvapotranspiration
         '
         resources.ApplyResources(Me.lblHumidityMin, "lblHumidityMin")
         Me.lblHumidityMin.Name = "lblHumidityMin"
-        '
-        'lblWindSpeed
-        '
-        resources.ApplyResources(Me.lblWindSpeed, "lblWindSpeed")
-        Me.lblWindSpeed.Name = "lblWindSpeed"
         '
         'lblTimeStep
         '
@@ -151,6 +148,13 @@ Partial Class dlgEvapotranspiration
         resources.ApplyResources(Me.lblMissingMethod, "lblMissingMethod")
         Me.lblMissingMethod.Name = "lblMissingMethod"
         '
+        'ucrInputComboBoxMissingMethod
+        '
+        Me.ucrInputComboBoxMissingMethod.AddQuotesIfUnrecognised = True
+        Me.ucrInputComboBoxMissingMethod.IsReadOnly = False
+        resources.ApplyResources(Me.ucrInputComboBoxMissingMethod, "ucrInputComboBoxMissingMethod")
+        Me.ucrInputComboBoxMissingMethod.Name = "ucrInputComboBoxMissingMethod"
+        '
         'lblMaxPerctMissingDays
         '
         resources.ApplyResources(Me.lblMaxPerctMissingDays, "lblMaxPerctMissingDays")
@@ -165,78 +169,6 @@ Partial Class dlgEvapotranspiration
         '
         resources.ApplyResources(Me.lblMaxPerctMissindData, "lblMaxPerctMissindData")
         Me.lblMaxPerctMissindData.Name = "lblMaxPerctMissindData"
-        '
-        'grpSolar
-        '
-        Me.grpSolar.Controls.Add(Me.lblCloudCover)
-        Me.grpSolar.Controls.Add(Me.lblSunshineHrs)
-        Me.grpSolar.Controls.Add(Me.UcrInputSolar)
-        Me.grpSolar.Controls.Add(Me.lblSolar)
-        Me.grpSolar.Controls.Add(Me.UcrReceiverRadiation)
-        Me.grpSolar.Controls.Add(Me.lblRadiation)
-        resources.ApplyResources(Me.grpSolar, "grpSolar")
-        Me.grpSolar.Name = "grpSolar"
-        Me.grpSolar.TabStop = False
-        '
-        'lblCloudCover
-        '
-        resources.ApplyResources(Me.lblCloudCover, "lblCloudCover")
-        Me.lblCloudCover.Name = "lblCloudCover"
-        '
-        'lblSunshineHrs
-        '
-        resources.ApplyResources(Me.lblSunshineHrs, "lblSunshineHrs")
-        Me.lblSunshineHrs.Name = "lblSunshineHrs"
-        '
-        'lblSolar
-        '
-        resources.ApplyResources(Me.lblSolar, "lblSolar")
-        Me.lblSolar.Name = "lblSolar"
-        '
-        'lblRadiation
-        '
-        resources.ApplyResources(Me.lblRadiation, "lblRadiation")
-        Me.lblRadiation.Name = "lblRadiation"
-        '
-        'UcrInputSolar
-        '
-        Me.UcrInputSolar.AddQuotesIfUnrecognised = True
-        Me.UcrInputSolar.IsReadOnly = False
-        resources.ApplyResources(Me.UcrInputSolar, "UcrInputSolar")
-        Me.UcrInputSolar.Name = "UcrInputSolar"
-        '
-        'UcrReceiverRadiation
-        '
-        Me.UcrReceiverRadiation.frmParent = Nothing
-        resources.ApplyResources(Me.UcrReceiverRadiation, "UcrReceiverRadiation")
-        Me.UcrReceiverRadiation.Name = "UcrReceiverRadiation"
-        Me.UcrReceiverRadiation.Selector = Nothing
-        Me.UcrReceiverRadiation.strNcFilePath = ""
-        Me.UcrReceiverRadiation.ucrSelector = Nothing
-        '
-        'ucrPnlSolar
-        '
-        resources.ApplyResources(Me.ucrPnlSolar, "ucrPnlSolar")
-        Me.ucrPnlSolar.Name = "ucrPnlSolar"
-        '
-        'UcrInputCrop
-        '
-        Me.UcrInputCrop.AddQuotesIfUnrecognised = True
-        Me.UcrInputCrop.IsReadOnly = False
-        resources.ApplyResources(Me.UcrInputCrop, "UcrInputCrop")
-        Me.UcrInputCrop.Name = "UcrInputCrop"
-        '
-        'ucrNewColName
-        '
-        resources.ApplyResources(Me.ucrNewColName, "ucrNewColName")
-        Me.ucrNewColName.Name = "ucrNewColName"
-        '
-        'ucrInputComboBoxMissingMethod
-        '
-        Me.ucrInputComboBoxMissingMethod.AddQuotesIfUnrecognised = True
-        Me.ucrInputComboBoxMissingMethod.IsReadOnly = False
-        resources.ApplyResources(Me.ucrInputComboBoxMissingMethod, "ucrInputComboBoxMissingMethod")
-        Me.ucrInputComboBoxMissingMethod.Name = "ucrInputComboBoxMissingMethod"
         '
         'ucrChkInterpMissingEntries
         '
@@ -280,6 +212,23 @@ Partial Class dlgEvapotranspiration
         Me.ucrNudMaxMissingData.Name = "ucrNudMaxMissingData"
         Me.ucrNudMaxMissingData.Value = New Decimal(New Integer() {0, 0, 0, 0})
         '
+        'ucrPnlSolar
+        '
+        resources.ApplyResources(Me.ucrPnlSolar, "ucrPnlSolar")
+        Me.ucrPnlSolar.Name = "ucrPnlSolar"
+        '
+        'UcrInputCrop
+        '
+        Me.UcrInputCrop.AddQuotesIfUnrecognised = True
+        Me.UcrInputCrop.IsReadOnly = False
+        resources.ApplyResources(Me.UcrInputCrop, "UcrInputCrop")
+        Me.UcrInputCrop.Name = "UcrInputCrop"
+        '
+        'ucrNewColName
+        '
+        resources.ApplyResources(Me.ucrNewColName, "ucrNewColName")
+        Me.ucrNewColName.Name = "ucrNewColName"
+        '
         'ucrReceiverDate
         '
         Me.ucrReceiverDate.frmParent = Me
@@ -289,22 +238,10 @@ Partial Class dlgEvapotranspiration
         Me.ucrReceiverDate.strNcFilePath = ""
         Me.ucrReceiverDate.ucrSelector = Nothing
         '
-        'UcrChkWind
-        '
-        Me.UcrChkWind.Checked = False
-        resources.ApplyResources(Me.UcrChkWind, "UcrChkWind")
-        Me.UcrChkWind.Name = "UcrChkWind"
-        '
         'UcrPnlMethod
         '
         resources.ApplyResources(Me.UcrPnlMethod, "UcrPnlMethod")
         Me.UcrPnlMethod.Name = "UcrPnlMethod"
-        '
-        'UcrChkSaveCSV
-        '
-        Me.UcrChkSaveCSV.Checked = False
-        resources.ApplyResources(Me.UcrChkSaveCSV, "UcrChkSaveCSV")
-        Me.UcrChkSaveCSV.Name = "UcrChkSaveCSV"
         '
         'UcrInputTimeStep
         '
@@ -312,15 +249,6 @@ Partial Class dlgEvapotranspiration
         Me.UcrInputTimeStep.IsReadOnly = False
         resources.ApplyResources(Me.UcrInputTimeStep, "UcrInputTimeStep")
         Me.UcrInputTimeStep.Name = "UcrInputTimeStep"
-        '
-        'UcrReceiverWindSpeed
-        '
-        Me.UcrReceiverWindSpeed.frmParent = Me
-        resources.ApplyResources(Me.UcrReceiverWindSpeed, "UcrReceiverWindSpeed")
-        Me.UcrReceiverWindSpeed.Name = "UcrReceiverWindSpeed"
-        Me.UcrReceiverWindSpeed.Selector = Nothing
-        Me.UcrReceiverWindSpeed.strNcFilePath = ""
-        Me.UcrReceiverWindSpeed.ucrSelector = Nothing
         '
         'UcrReceiverHumidityMin
         '
@@ -370,27 +298,107 @@ Partial Class dlgEvapotranspiration
         resources.ApplyResources(Me.ucrBase, "ucrBase")
         Me.ucrBase.Name = "ucrBase"
         '
+        'ucrPnlWindSpeed
+        '
+        resources.ApplyResources(Me.ucrPnlWindSpeed, "ucrPnlWindSpeed")
+        Me.ucrPnlWindSpeed.Name = "ucrPnlWindSpeed"
+        '
+        'grpSolar
+        '
+        Me.grpSolar.Controls.Add(Me.lblCloudCover)
+        Me.grpSolar.Controls.Add(Me.lblSunshineHrs)
+        Me.grpSolar.Controls.Add(Me.UcrInputSolar)
+        Me.grpSolar.Controls.Add(Me.lblSolar)
+        Me.grpSolar.Controls.Add(Me.UcrReceiverRadiation)
+        Me.grpSolar.Controls.Add(Me.lblRadiation)
+        resources.ApplyResources(Me.grpSolar, "grpSolar")
+        Me.grpSolar.Name = "grpSolar"
+        Me.grpSolar.TabStop = False
+        '
+        'lblCloudCover
+        '
+        resources.ApplyResources(Me.lblCloudCover, "lblCloudCover")
+        Me.lblCloudCover.Name = "lblCloudCover"
+        '
+        'lblSunshineHrs
+        '
+        resources.ApplyResources(Me.lblSunshineHrs, "lblSunshineHrs")
+        Me.lblSunshineHrs.Name = "lblSunshineHrs"
+        '
+        'UcrInputSolar
+        '
+        Me.UcrInputSolar.AddQuotesIfUnrecognised = True
+        Me.UcrInputSolar.IsReadOnly = False
+        resources.ApplyResources(Me.UcrInputSolar, "UcrInputSolar")
+        Me.UcrInputSolar.Name = "UcrInputSolar"
+        '
+        'lblSolar
+        '
+        resources.ApplyResources(Me.lblSolar, "lblSolar")
+        Me.lblSolar.Name = "lblSolar"
+        '
+        'UcrReceiverRadiation
+        '
+        Me.UcrReceiverRadiation.frmParent = Me
+        resources.ApplyResources(Me.UcrReceiverRadiation, "UcrReceiverRadiation")
+        Me.UcrReceiverRadiation.Name = "UcrReceiverRadiation"
+        Me.UcrReceiverRadiation.Selector = Nothing
+        Me.UcrReceiverRadiation.strNcFilePath = ""
+        Me.UcrReceiverRadiation.ucrSelector = Nothing
+        '
+        'lblRadiation
+        '
+        resources.ApplyResources(Me.lblRadiation, "lblRadiation")
+        Me.lblRadiation.Name = "lblRadiation"
+        '
+        'grpWindSpeed
+        '
+        Me.grpWindSpeed.Controls.Add(Me.UcrChkWind)
+        Me.grpWindSpeed.Controls.Add(Me.lblWindSpeed)
+        Me.grpWindSpeed.Controls.Add(Me.UcrReceiverWindSpeed)
+        resources.ApplyResources(Me.grpWindSpeed, "grpWindSpeed")
+        Me.grpWindSpeed.Name = "grpWindSpeed"
+        Me.grpWindSpeed.TabStop = False
+        '
+        'UcrChkWind
+        '
+        Me.UcrChkWind.Checked = False
+        resources.ApplyResources(Me.UcrChkWind, "UcrChkWind")
+        Me.UcrChkWind.Name = "UcrChkWind"
+        '
+        'lblWindSpeed
+        '
+        resources.ApplyResources(Me.lblWindSpeed, "lblWindSpeed")
+        Me.lblWindSpeed.Name = "lblWindSpeed"
+        '
+        'UcrReceiverWindSpeed
+        '
+        Me.UcrReceiverWindSpeed.frmParent = Me
+        resources.ApplyResources(Me.UcrReceiverWindSpeed, "UcrReceiverWindSpeed")
+        Me.UcrReceiverWindSpeed.Name = "UcrReceiverWindSpeed"
+        Me.UcrReceiverWindSpeed.Selector = Nothing
+        Me.UcrReceiverWindSpeed.strNcFilePath = ""
+        Me.UcrReceiverWindSpeed.ucrSelector = Nothing
+        '
         'dlgEvapotranspiration
         '
         resources.ApplyResources(Me, "$this")
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
+        Me.Controls.Add(Me.grpWindSpeed)
         Me.Controls.Add(Me.grpSolar)
         Me.Controls.Add(Me.ucrPnlSolar)
+        Me.Controls.Add(Me.ucrPnlWindSpeed)
         Me.Controls.Add(Me.UcrInputCrop)
         Me.Controls.Add(Me.ucrNewColName)
         Me.Controls.Add(Me.grpMissingDataOpts)
         Me.Controls.Add(Me.lblDate)
         Me.Controls.Add(Me.ucrReceiverDate)
-        Me.Controls.Add(Me.UcrChkWind)
         Me.Controls.Add(Me.rdoHargreavesSamani)
         Me.Controls.Add(Me.rdoPenmanMonteith)
         Me.Controls.Add(Me.UcrPnlMethod)
-        Me.Controls.Add(Me.UcrChkSaveCSV)
         Me.Controls.Add(Me.lblCrop)
         Me.Controls.Add(Me.lblTimeStep)
         Me.Controls.Add(Me.UcrInputTimeStep)
-        Me.Controls.Add(Me.lblWindSpeed)
-        Me.Controls.Add(Me.UcrReceiverWindSpeed)
         Me.Controls.Add(Me.lblHumidityMin)
         Me.Controls.Add(Me.UcrReceiverHumidityMin)
         Me.Controls.Add(Me.lblHumidityMax)
@@ -409,6 +417,8 @@ Partial Class dlgEvapotranspiration
         Me.grpMissingDataOpts.PerformLayout()
         Me.grpSolar.ResumeLayout(False)
         Me.grpSolar.PerformLayout()
+        Me.grpWindSpeed.ResumeLayout(False)
+        Me.grpWindSpeed.PerformLayout()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -423,17 +433,13 @@ Partial Class dlgEvapotranspiration
     Friend WithEvents UcrReceiverHumidityMax As ucrReceiverSingle
     Friend WithEvents lblTmin As Label
     Friend WithEvents UcrReceiverTmin As ucrReceiverSingle
-    Friend WithEvents UcrChkSaveCSV As ucrCheck
     Friend WithEvents lblCrop As Label
     Friend WithEvents UcrInputCrop As ucrInputComboBox
     Friend WithEvents lblTimeStep As Label
     Friend WithEvents UcrInputTimeStep As ucrInputComboBox
-    Friend WithEvents lblWindSpeed As Label
-    Friend WithEvents UcrReceiverWindSpeed As ucrReceiverSingle
     Friend WithEvents rdoHargreavesSamani As RadioButton
     Friend WithEvents rdoPenmanMonteith As RadioButton
     Friend WithEvents UcrPnlMethod As UcrPanel
-    Friend WithEvents UcrChkWind As ucrCheck
     Friend WithEvents ucrReceiverDate As ucrReceiverSingle
     Friend WithEvents lblDate As Label
     Friend WithEvents grpMissingDataOpts As GroupBox
@@ -449,6 +455,11 @@ Partial Class dlgEvapotranspiration
     Friend WithEvents lblMissingMethod As Label
     Friend WithEvents ucrNewColName As ucrSave
     Friend WithEvents ucrReceiverTmax As ucrReceiverSingle
+    Friend WithEvents ucrPnlSolar As UcrPanel
+    Friend WithEvents grpWindSpeed As GroupBox
+    Friend WithEvents UcrChkWind As ucrCheck
+    Friend WithEvents lblWindSpeed As Label
+    Friend WithEvents UcrReceiverWindSpeed As ucrReceiverSingle
     Friend WithEvents grpSolar As GroupBox
     Friend WithEvents lblCloudCover As Label
     Friend WithEvents lblSunshineHrs As Label
@@ -456,5 +467,5 @@ Partial Class dlgEvapotranspiration
     Friend WithEvents lblSolar As Label
     Friend WithEvents UcrReceiverRadiation As ucrReceiverSingle
     Friend WithEvents lblRadiation As Label
-    Friend WithEvents ucrPnlSolar As UcrPanel
+    Friend WithEvents ucrPnlWindSpeed As UcrPanel
 End Class
