@@ -321,8 +321,12 @@ Public Class dlgEvapotranspiration
     End Sub
 
     Private Sub TestOKEnabled()
-        If rdoPenmanMonteith.Checked Then
-            If ucrNewColName.IsComplete AndAlso Not ucrReceiverDate.IsEmpty() AndAlso Not ucrReceiverTmax.IsEmpty() AndAlso Not UcrReceiverTmin.IsEmpty() AndAlso Not UcrReceiverHumidityMax.IsEmpty() AndAlso Not UcrReceiverHumidityMin.IsEmpty() AndAlso Not UcrReceiverRadiation.IsEmpty() AndAlso (UcrChkWind.Checked AndAlso Not UcrReceiverWindSpeed.IsEmpty()) AndAlso Not UcrInputTimeStep.IsEmpty AndAlso Not UcrInputSolar.IsEmpty AndAlso Not UcrInputCrop.IsEmpty AndAlso ucrNudMaxMissingData.GetText <> "" AndAlso ucrNudMaxMissingDays.GetText <> "" AndAlso ucrNudMaxDurationMissingData.GetText <> "" Then
+        If rdoPenmanMonteith.Checked And UcrChkWind.Checked Then
+            If ucrNewColName.IsComplete AndAlso Not ucrReceiverDate.IsEmpty() AndAlso Not ucrReceiverTmax.IsEmpty() AndAlso Not UcrReceiverTmin.IsEmpty() AndAlso Not UcrReceiverHumidityMax.IsEmpty() AndAlso Not UcrReceiverHumidityMin.IsEmpty() AndAlso Not UcrReceiverRadiation.IsEmpty() AndAlso Not UcrReceiverWindSpeed.IsEmpty AndAlso Not UcrInputTimeStep.IsEmpty AndAlso Not UcrInputSolar.IsEmpty AndAlso Not UcrInputCrop.IsEmpty AndAlso ucrNudMaxMissingData.GetText <> "" AndAlso ucrNudMaxMissingDays.GetText <> "" AndAlso ucrNudMaxDurationMissingData.GetText <> "" Then
+                ucrBase.OKEnabled(True)
+            End If
+        ElseIf rdoPenmanMonteith.Checked And Not UcrChkWind.Checked Then
+            If ucrNewColName.IsComplete AndAlso Not ucrReceiverDate.IsEmpty() AndAlso Not ucrReceiverTmax.IsEmpty() AndAlso Not UcrReceiverTmin.IsEmpty() AndAlso Not UcrReceiverHumidityMax.IsEmpty() AndAlso Not UcrReceiverHumidityMin.IsEmpty() AndAlso Not UcrReceiverRadiation.IsEmpty() AndAlso Not UcrInputTimeStep.IsEmpty AndAlso Not UcrInputSolar.IsEmpty AndAlso Not UcrInputCrop.IsEmpty AndAlso ucrNudMaxMissingData.GetText <> "" AndAlso ucrNudMaxMissingDays.GetText <> "" AndAlso ucrNudMaxDurationMissingData.GetText <> "" Then
                 ucrBase.OKEnabled(True)
             Else
                 ucrBase.OKEnabled(False)
